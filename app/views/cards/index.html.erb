@@ -1,0 +1,17 @@
+<h2>Все карточки</h2>
+
+<div class="list-group">
+  <% @cards.each do |card| %>
+    <a href="#" class="list-group-item list-group-item-action flex-column
+                       align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+          <%= card.original_text %>
+        </h5>
+        <small>
+          <%= formatted_date(card.review_date) %>
+        </small>
+      </div>
+    </a>
+  <% end %>
+</div>
