@@ -1,0 +1,15 @@
+inherit_gem:
+  rubocop-github:
+    - config/default.yml
+    - config/rails.yml
+
+inherit_from: .rubocop_todo.yml
+
+Rails:
+  Enabled: true
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/schema.rb
+    - db/migrate/*.rb

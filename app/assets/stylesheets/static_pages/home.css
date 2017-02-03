@@ -1,0 +1,31 @@
+body {
+  padding-top: 5rem;
+}
+
+header {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+section p.lead {
+  text-align: center;
+}
+
+/* MISC */
+
+.clearfix:after {
+  content:".";
+  display:block;
+  clear:both;
+  visibility:hidden;
+  line-height:0;
+  height:0;
+}
+
+html[xmlns].clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
