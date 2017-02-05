@@ -1,0 +1,7 @@
+.help-block {
+  color: #a94442;
+}
+
+textarea[aria-invalid=true] {
+  border-color: #a94442;
+}

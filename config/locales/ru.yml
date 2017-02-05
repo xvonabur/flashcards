@@ -1,0 +1,26 @@
+ru:
+  activerecord:
+    attributes:
+      card:
+        review_date: 'Дата пересмотра'
+  navigation:
+    links:
+      all_cards: 'Все карточки'
+      new_card: 'Добавить карточку'
+  header:
+    title: 'Флешкарточкер'
+  home:
+    lead: 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
+  cards:
+    index:
+      title: 'Все карточки'
+    template:
+      header:
+        title: 'Карта #'
+      delete:
+        btn: 'Удалить'
+        confirm: 'Вы уверены, что хотите удалить карточку?'
+      edit:
+        btn: 'Редактировать'
+    errors:
+      texts_are_equal: 'Оригинальный и переведенный тексты должны отличаться!'

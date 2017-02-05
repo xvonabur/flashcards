@@ -1,0 +1,18 @@
+ru:
+  simple_form:
+    labels:
+      defaults:
+        original_text: "Оригинал"
+        translated_text: "Перевод"
+        review_date: "Дата пересмотра"
+    "yes": 'Да'
+    "no": 'Нет'
+    required:
+      text: 'обязательное поле'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "При заполнении формы возникли следующие ошибки:"
+

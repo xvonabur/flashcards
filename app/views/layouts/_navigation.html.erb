@@ -11,12 +11,11 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to 'Все карточки', cards_path,
+        <%= link_to t('navigation.links.all_cards'), cards_path,
                     class: navbar_item_class('nav-link', cards_path) %>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Добавить карточку</a>
-      </li>
+      <%= link_to t('navigation.links.new_card'), new_card_path,
+                  class: navbar_item_class('nav-link', new_card_path) %>
     </ul>
   </div>
 </nav>
