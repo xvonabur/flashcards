@@ -5,6 +5,16 @@ inherit_gem:
 
 inherit_from: .rubocop_todo.yml
 
+# Unnecessary, 'cause rubocop-github already has it
+# Metrics/LineLength:
+#   Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
 Rails:
   Enabled: true
   Include:
