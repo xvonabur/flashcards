@@ -21,6 +21,6 @@ class Card < ApplicationRecord
   end
 
   def assign_review_date
-    self.review_date ||= 3.days.from_now.getlocal
+    self.review_date ||= 3.days.from_now
   end
 end
