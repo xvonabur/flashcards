@@ -1,10 +1,23 @@
 # frozen_string_literal: true
 class Card < ApplicationRecord
   after_initialize :assign_review_date
+  before_update :original_text_check, if: ->(card){ card.text_to_check.present? }
 
   validates :original_text, :translated_text, presence: true
   validates :review_date, presence: true, on: :create
   validate :texts_are_different?
+
+  attr_accessor :text_to_check
+
+  scope :random_one, -> { order('RANDOM()').first }
+  scope :fetch_expired, -> { where('review_date <= ?', Time.now.end_of_day) }
+
+  def original_text_check
+    db_text = cleaned_text(self.original_text)
+    passed_text = cleaned_text(self.text_to_check)
+    throw :abort if db_text != passed_text
+    self.review_date = 3.days.from_now
+  end
 
   private
 
