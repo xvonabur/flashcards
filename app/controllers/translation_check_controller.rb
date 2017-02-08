@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class TranslationCheckController < ApplicationController
   before_action :fetch_card_by_id, only: :create
-  after_action :update_review_date, only: :create
 
   def show
     @card = Card.fetch_expired.random_one
@@ -11,6 +10,7 @@ class TranslationCheckController < ApplicationController
     check_result = @card.original_text_check(card_params[:text_to_check])
 
     if check_result
+      @card.update_review_date
       flash[:success] = I18n.t('translation_check.results.good')
     else
       flash[:alert] = I18n.t('translation_check.results.bad')
@@ -27,9 +27,5 @@ class TranslationCheckController < ApplicationController
 
   def fetch_card_by_id
     @card = Card.find(card_params[:id])
-  end
-
-  def update_review_date
-    @card.update_review_date
   end
 end
