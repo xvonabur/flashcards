@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Card, type: :model do
   context 'fetches expired cards' do
     it 'returns all expired cards' do
-      create_cards
+      create_cards(past_review_date: 3, future_review_date: 3)
 
       expect(Card.fetch_expired.count).to eq(3)
     end
@@ -14,31 +14,25 @@ describe Card, type: :model do
   end
 
   context 'random one card' do
-    it 'returns persisted card' do
-      create_cards
+    before { create_cards }
 
+    it 'returns persisted card' do
       expect(Card.random_one.persisted?).to eq(true)
     end
 
     it "doesn't create a new card" do
-      create_cards
-
       Card.random_one
 
-      expect(Card.count).to eq(6)
+      expect(Card.count).to eq(3)
     end
 
     it "original text starts with Text" do
-      create_cards
-
       card = Card.random_one
 
       expect(card.original_text.starts_with?('Text')).to eq(true)
     end
 
     it "translated text starts with Текст" do
-      create_cards
-
       card = Card.random_one
 
       expect(card.translated_text.starts_with?('Текст')).to eq(true)
@@ -90,13 +84,13 @@ describe Card, type: :model do
 
   private
 
-  def create_cards
-    3.times do |n|
+  def create_cards(past_review_date: 3, future_review_date: 0)
+    past_review_date.times do |n|
       Card.create(original_text: "Text #{n}", translated_text: "Текст #{n}",
                   review_date: (n + 1).days.ago)
     end
 
-    3.times do |n|
+    future_review_date.times do |n|
       Card.create(original_text: "Text #{n * 10}",
                   translated_text: "Текст #{n * 10}",
                   review_date: (n + 1).days.from_now)
