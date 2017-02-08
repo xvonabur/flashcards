@@ -7,9 +7,7 @@ class TranslationCheckController < ApplicationController
   end
 
   def create
-    check_result = @card.original_text_check(card_params[:text_to_check])
-
-    if check_result
+    if @card.original_text_check(card_params[:text_to_check])
       @card.update_review_date
       flash[:success] = I18n.t('translation_check.results.good')
     else
