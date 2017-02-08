@@ -1,0 +1,27 @@
+<% if card.present? %>
+  <% show_del_link ||= false %>
+  <div class="card text-center">
+    <div class="card-header">
+      <%= t('cards.template.header.title') %><%= card.id %>
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">
+        <%= card.translated_text %>
+      </h4>
+      <%= simple_form_for(card, as: :card, wrapper: :vertical_form,
+                          url: create_translation_check_path,
+                          method: :post) do |form| %>
+        <%= form.input :id, as: :hidden %>
+        <%= form.input :text_to_check,
+                       label: t('translation_check.form.labels.text_to_check') %>
+        <%= form.button :submit, t('translation_check.form.labels.check_btn') %>
+      <% end %>
+    </div>
+    <div class="card-footer text-muted">
+      <small>
+        <%= Card.human_attribute_name(:review_date) %>:
+        <%= formatted_date(card.review_date) %>
+      </small>
+    </div>
+  </div>
+<% end %>

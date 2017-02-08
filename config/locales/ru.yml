@@ -24,3 +24,11 @@ ru:
         btn: 'Редактировать'
     errors:
       texts_are_equal: 'Оригинальный и переведенный тексты должны отличаться!'
+  translation_check:
+    form:
+      labels:
+        text_to_check: 'Введите перевод ниже:'
+        check_btn: 'Проверить'
+    results:
+      good: 'Правильно!'
+      bad: 'Не правильно!'
