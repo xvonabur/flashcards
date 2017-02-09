@@ -6,8 +6,6 @@ class Card < ApplicationRecord
   validates :review_date, presence: true, on: :create
   validate :texts_are_different?
 
-  attr_accessor :text_to_check
-
   scope :random_one, -> { order('RANDOM()').first }
   scope :fetch_expired, -> { where('review_date <= ?', Time.now.end_of_day) }
 
