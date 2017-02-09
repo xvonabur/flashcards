@@ -8,6 +8,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'support/factory_girl'
 require 'capybara/rspec'
+require 'support/database_cleaner'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
