@@ -2,9 +2,10 @@
 require 'rails_helper'
 
 RSpec.feature 'Translation check' do
-  before(:all) { create(:expired_card) }
-
-  before(:each) { visit root_path }
+  before(:each) do
+    create(:expired_card)
+    visit root_path
+  end
 
   scenario 'User enters wright translation' do
     translated = find('.card-title').text
