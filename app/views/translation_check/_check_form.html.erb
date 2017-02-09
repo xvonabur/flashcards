@@ -1,5 +1,4 @@
 <% if card.present? %>
-  <% show_del_link ||= false %>
   <div class="card text-center">
     <div class="card-header">
       <%= t('cards.template.header.title') %><%= card.id %>
@@ -12,8 +11,10 @@
                           url: create_translation_check_path,
                           method: :post) do |form| %>
         <%= form.input :id, as: :hidden %>
-        <%= form.input :text_to_check,
-                       label: t('translation_check.form.labels.text_to_check') %>
+        <%= form.input :text_to_check, as: :fake,
+                       input_html: { id: 'card_text_to_check',
+                                     name: 'card[text_to_check]' } ,
+            label: t('translation_check.form.labels.text_to_check') %>
         <%= form.button :submit, t('translation_check.form.labels.check_btn') %>
       <% end %>
     </div>
