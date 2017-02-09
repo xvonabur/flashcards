@@ -1,7 +1,6 @@
 language: ruby
 rvm:
-  - 2.3.2
-cache: bundler
+  - 2.3.3
 before_script:
   - psql -c 'create database flashcards_ci_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
