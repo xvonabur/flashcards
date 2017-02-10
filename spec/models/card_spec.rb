@@ -69,8 +69,8 @@ describe Card, type: :model do
   end
 
   it 'sets review date to +3 days from now' do
-    card = Card.create(original_text: '1', translated_text: '2',
-                      review_date: Date.new(2017, 2, 2))
+    card = create(:card, original_text: '1', translated_text: '2',
+                         review_date: Date.new(2017, 2, 2))
 
     card.update_review_date
 
@@ -87,14 +87,14 @@ describe Card, type: :model do
 
   def create_cards(past_review_date: 3, future_review_date: 0)
     past_review_date.times do |n|
-      Card.create(original_text: "Text #{n}", translated_text: "Текст #{n}",
-                  review_date: (n + 1).days.ago)
+      create(:card, original_text: "Text #{n}", translated_text: "Текст #{n}",
+             review_date: (n + 1).days.ago)
     end
 
     future_review_date.times do |n|
-      Card.create(original_text: "Text #{n * 10}",
-                  translated_text: "Текст #{n * 10}",
-                  review_date: (n + 1).days.from_now)
+      create(:card, original_text: "Text #{n * 10}",
+                    translated_text: "Текст #{n * 10}",
+                    review_date: (n + 1).days.from_now)
     end
   end
 end
