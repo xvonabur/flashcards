@@ -83,24 +83,6 @@ describe Card, type: :model do
     expect(card.review_date.to_date).to eq(3.days.from_now.to_date)
   end
 
-  it 'is valid with user' do
-    card = build(:card)
-
-    expect(card.valid?).to eq(true)
-  end
-
-  it 'is invalid with user' do
-    card = build(:card, user: nil)
-
-    expect(card.valid?).to eq(false)
-  end
-
-  it 'has associated user' do
-    card = create(:card)
-
-    expect(card.user).to be_a(User)
-  end
-
   private
 
   def create_cards(past_review_date: 3, future_review_date: 0)
