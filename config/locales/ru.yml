@@ -17,7 +17,6 @@ ru:
     lead: 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
   common_errors:
     access_forbidden: 'Доступ запрещен'
-    already_signed_in: 'Вы уже авторизованы!'
   cards:
     index:
       title: 'Все карточки'
@@ -50,3 +49,8 @@ ru:
     results:
       good: 'Правильно!'
       bad: 'Не правильно!'
+  external_login:
+    signed_in_via:
+     success: 'Вы зашли через'
+     failure: 'Ошибка при входе через'
+

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class UserSessionsController < ApplicationController
   before_action :require_login, only: :destroy
-  before_action :for_guests_only, only: :new
+  before_action :already_signed_in?, only: :new
 
   def new
     @user = User.new
@@ -28,9 +28,8 @@ class UserSessionsController < ApplicationController
     params.require(:user_session).permit(:email, :password)
   end
 
-  def for_guests_only
+  def already_signed_in?
     return unless logged_in?
-    flash[:error] = I18n.t('common_errors.already_signed_in')
     redirect_to(cards_path)
   end
 end

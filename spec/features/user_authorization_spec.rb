@@ -32,12 +32,5 @@ RSpec.feature 'User authorization' do
 
       expect(page).to have_content I18n.t('user_sessions.create.failure')
     end
-
-    scenario 'prints already signed in messages' do
-      login user
-      visit new_user_session_path
-
-      expect(page).to have_content I18n.t('common_errors.already_signed_in')
-    end
   end
 end

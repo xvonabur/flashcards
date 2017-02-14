@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 FactoryGirl.define do
+  factory :authentication do
+    
+  end
   factory :card do
     original_text     "This looks like a job for superman"
     translated_text   "Doesn't need translation"
