@@ -41,6 +41,7 @@ gem "factory_girl_rails", "~> 4.8"
 
 gem "simple_form", "~> 3.4.0"
 gem "russian", "~> 0.6.0"
+gem "sorcery", "~> 0.10.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
@@ -64,6 +65,7 @@ end
 
 group :test do
   gem "database_cleaner", "~> 1.5.3"
+  gem "rails-controller-testing", "~> 1.0.1"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

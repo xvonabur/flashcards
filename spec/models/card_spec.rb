@@ -86,15 +86,17 @@ describe Card, type: :model do
   private
 
   def create_cards(past_review_date: 3, future_review_date: 0)
+    user = create(:user)
     past_review_date.times do |n|
       create(:card, original_text: "Text #{n}", translated_text: "Текст #{n}",
-             review_date: (n + 1).days.ago)
+             review_date: (n + 1).days.ago, user: user)
     end
 
     future_review_date.times do |n|
       create(:card, original_text: "Text #{n * 10}",
                     translated_text: "Текст #{n * 10}",
-                    review_date: (n + 1).days.from_now)
+                    review_date: (n + 1).days.from_now,
+                    user: user)
     end
   end
 end
