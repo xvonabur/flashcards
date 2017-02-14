@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 class UsersController < ApplicationController
-  before_action :require_login, except: [:new, :create]
+  before_action :require_login, except: [:new, :create, :index]
+  before_action :get_user_by_id, only: [:edit, :update, :destroy]
 
   def index
-    current_user.blank? ? redirect_to(new_user_path) : redirect_to(root_path)
+    redirect_to(new_user_path)
   end
 
   def new
@@ -11,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def create
@@ -25,8 +25,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to(translation_check_path, notice: I18n.t('users.update.success'))
     else
@@ -35,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
 
     redirect_to(root_path)
@@ -45,5 +42,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def get_user_by_id
+    @user = User.find(params[:id])
   end
 end

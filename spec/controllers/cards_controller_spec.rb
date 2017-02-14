@@ -13,12 +13,6 @@ RSpec.describe CardsController, type: :controller do
       expect(response).to redirect_to(root_url)
     end
 
-    it 'does not create a card for unsuccessful operation' do
-      expect {
-        post(:create, params: { card: { original_text: '', translated_text: '' } })
-      }.to_not change { Card.count }
-    end
-
     it 'redirects to root url after trying to update a card' do
       put(:update, params: { id: card.id, card: { original_text: new_original } })
       expect(response).to redirect_to(root_url)

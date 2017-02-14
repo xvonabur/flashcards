@@ -4,7 +4,7 @@ class TranslationCheckController < ApplicationController
   before_action :fetch_owned_card, only: :create
 
   def show
-    @card = Card.where(user_id: current_user.id).fetch_expired.random_one
+    @card = current_user.cards.fetch_expired.random_one
   end
 
   def create
@@ -25,7 +25,7 @@ class TranslationCheckController < ApplicationController
   end
 
   def fetch_owned_card
-    @card = Card.where(user_id: current_user.id, id: card_params[:id]).first
+    @card = current_user.cards.find_by(id: card_params[:id])
 
     return unless @card.blank?
     redirect_back(fallback_location: root_path)

@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   before_action :fetch_card, only: [:show, :edit, :destroy, :update]
 
   def index
-    @cards = Card.where(user_id: current_user.id)
+    @cards = current_user.cards
   end
 
   def new
@@ -12,8 +12,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
-    @card.user = current_user
+    @card = current_user.cards.build(card_params)
 
     if @card.save
       redirect_to @card
@@ -44,7 +43,7 @@ class CardsController < ApplicationController
   end
 
   def fetch_card
-    @card = Card.where(id: params[:id]).first
+    @card = Card.find(params[:id])
     return if @card.user_id == current_user.id
     flash[:error] = I18n.t('common_errors.access_forbidden')
     redirect_to cards_path
