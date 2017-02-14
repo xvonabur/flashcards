@@ -44,14 +44,6 @@ RSpec.feature 'Cards manipulation' do
         find('input[type=submit]').click
       end
 
-      scenario 'and does not see an error' do
-        expect(page).to_not have_css('.alert-danger')
-      end
-
-      scenario 'and does not see a new card form' do
-        expect(page).to_not have_css('#new_card')
-      end
-
       scenario 'and does see a card original text' do
         expect(page).to have_content(new_card_attrs[:original_text])
       end
@@ -71,10 +63,6 @@ RSpec.feature 'Cards manipulation' do
         card.errors.messages.values.each do |mess|
           expect(page).to have_content(mess)
         end
-      end
-
-      scenario 'and does see a new card form' do
-        expect(page).to have_css('#new_card')
       end
     end
   end

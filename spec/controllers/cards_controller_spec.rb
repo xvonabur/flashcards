@@ -6,29 +6,12 @@ RSpec.describe CardsController, type: :controller do
     let!(:card) { create(:card) }
     let!(:new_original) { 'New original' }
 
-    it 'redirects to root url for unsuccessful operation' do
-      post(:create, params: {
-        card: { original_text: new_original, translated_text: new_original }
-      })
-      expect(response).to redirect_to(root_url)
-    end
-
-    it 'redirects to root url after trying to update a card' do
-      put(:update, params: { id: card.id, card: { original_text: new_original } })
-      expect(response).to redirect_to(root_url)
-    end
-
-    it 'does not change a card after trying to update her' do
+    it 'does not change a card after trying to update it' do
       put(:update, params: { id: card.id, card: { original_text: new_original } })
       expect(card.reload.original_text).to_not eq(new_original)
     end
 
-    it 'redirects to root url after trying to delete a card' do
-      delete(:destroy, params: { id: card.id })
-      expect(response).to redirect_to(root_url)
-    end
-
-    it 'does not remove a card after trying to remove her' do
+    it 'does not remove a card after trying to remove it' do
       delete(:destroy, params: { id: card.id })
       expect(card.reload).to eq(card)
     end
@@ -43,22 +26,10 @@ RSpec.describe CardsController, type: :controller do
 
     before { login_user user }
 
-    it 'redirects to card page after successful update' do
-      put(:update, params: { id: card.id, card: new_card_attrs })
-
-      expect(response).to redirect_to(card_path(card.id))
-    end
-
     it 'changes card attrs successfully' do
       put(:update, params: { id: card.id, card: new_card_attrs })
 
       expect(card.reload.original_text).to eq(new_card_attrs[:original_text])
-    end
-
-    it 'redirects to cards path after successful destroy' do
-      delete(:destroy, params: { id: card.id })
-
-      expect(response).to redirect_to(cards_path)
     end
 
     it 'changes card attrs successfully' do
@@ -78,22 +49,10 @@ RSpec.describe CardsController, type: :controller do
 
     before { login_user user }
 
-    it 'redirects to cards page after unsuccessful update' do
-      put(:update, params: { id: card.id, card: new_card_attrs })
-
-      expect(response).to redirect_to(cards_path)
-    end
-
     it 'changes card attrs unsuccessfully' do
       put(:update, params: { id: card.id, card: new_card_attrs })
 
       expect(card.reload.original_text).to_not eq(new_card_attrs[:original_text])
-    end
-
-    it 'redirects to cards path after unsuccessful destroy' do
-      delete(:destroy, params: { id: card.id })
-
-      expect(response).to redirect_to(cards_path)
     end
 
     it 'changes card attrs unsuccessfully' do
