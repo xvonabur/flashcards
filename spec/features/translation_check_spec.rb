@@ -3,10 +3,12 @@ require 'rails_helper'
 
 RSpec.feature 'Translation check' do
   # use let! to force the method's invocation before each example.
-  let!(:expired_card) { create(:expired_card) }
+  let!(:user) { create(:user) }
+  let!(:expired_card) { create(:expired_card, user: user) }
 
   before(:each) do
-    visit root_path
+    login user
+    visit translation_check_path
   end
 
   scenario 'User enters wright translation' do

@@ -1,5 +1,4 @@
-<%= simple_form_for(card, as: :card, html: { class: 'form-horizontal' },
-                    wrapper: :vertical_form) do |form| %>
+<%= simple_form_for(card, as: :card) do |form| %>
   <%= form.error_notification %>
   <%= form.input :original_text %>
   <%= form.input :translated_text %>

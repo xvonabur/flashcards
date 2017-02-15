@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 class TranslationCheckController < ApplicationController
-  before_action :fetch_card_by_id, only: :create
+  before_action :require_login
+  before_action :fetch_owned_card, only: :create
 
   def show
-    @card = Card.fetch_expired.random_one
+    @card = current_user.cards.fetch_expired.random_one
   end
 
   def create
@@ -23,7 +24,10 @@ class TranslationCheckController < ApplicationController
     params.require(:card).permit(:id, :text_to_check)
   end
 
-  def fetch_card_by_id
-    @card = Card.find(card_params[:id])
+  def fetch_owned_card
+    @card = current_user.cards.find_by(id: card_params[:id])
+
+    return unless @card.blank?
+    redirect_back(fallback_location: root_path)
   end
 end

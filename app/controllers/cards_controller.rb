@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 class CardsController < ApplicationController
+  before_action :require_login
   before_action :fetch_card, only: [:show, :edit, :destroy, :update]
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
 
   def new
@@ -11,7 +12,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.build(card_params)
 
     if @card.save
       redirect_to @card
@@ -43,5 +44,8 @@ class CardsController < ApplicationController
 
   def fetch_card
     @card = Card.find(params[:id])
+    return if @card.user_id == current_user.id
+    flash[:error] = I18n.t('common_errors.access_forbidden')
+    redirect_to cards_path
   end
 end

@@ -10,12 +10,38 @@
   <%= link_to 'Flash', root_path, class: 'navbar-brand' %>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to t('navigation.links.all_cards'), cards_path,
-                    class: navbar_item_class('nav-link', cards_path) %>
-      </li>
-      <%= link_to t('navigation.links.new_card'), new_card_path,
-                  class: navbar_item_class('nav-link', new_card_path) %>
+      <% if current_user %>
+        <li class="nav-item">
+          <%= link_to t('navigation.links.all_cards'), cards_path,
+                      id: 'all_cards_link',
+                      class: navbar_item_class('nav-link', cards_path) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('navigation.links.new_card'), new_card_path,
+                      id: 'add_card_link',
+                      class: navbar_item_class('nav-link', new_card_path) %>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="nav navbar-nav nav-masthead">
+      <% if current_user %>
+        <%= link_to t('navigation.links.profile'), edit_user_path(current_user.id),
+                    id: 'user_profile_link',
+                    class: navbar_item_class('nav-link',
+                                             edit_user_path(current_user.id)) %>
+        <%= link_to t('navigation.links.log_out'), :logout, method: :post,
+                    id: 'log_out_link', class: 'nav-link' %>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to t('navigation.links.sign_up'), new_user_path,
+                      id: 'sign_up_link',
+                      class: navbar_item_class('nav-link', new_user_path) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('navigation.links.sign_in'), :login, id: 'sign_in_link',
+                      class: navbar_item_class('nav-link', login_path) %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

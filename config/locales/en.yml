@@ -7,10 +7,16 @@ en:
     links:
       all_cards: 'All cards'
       new_card: 'Add card'
+      profile: 'Profile'
+      log_out: 'Log out'
+      sign_up: 'Sign up'
+      sign_in: 'Sign in'
   header:
     title: 'Flashcards'
   home:
     lead: 'The first intuitive flash cards manager in the world. That is right.'
+  common_errors:
+    access_forbidden: 'Access forbidden!'
   cards:
     index:
       title: 'All cards'
@@ -24,11 +30,27 @@ en:
         btn: 'Edit'
     errors:
       texts_are_equal: 'Original and translated texts must not be equal!'
+  users:
+    create:
+      success: 'User registration is successful'
+    update:
+      success: 'Profile was updated'
+  user_sessions:
+    create:
+      success: 'Hello!'
+      failure: "Cannot sign in! Check user name and user password."
+    destroy:
+      success: 'Bye!'
   translation_check:
     form:
       labels:
-        text_to_check: 'Введите перевод ниже:'
-        check_btn: 'Проверить'
+        text_to_check: 'Fill in translation:'
+        check_btn: 'Check'
     results:
-      good: 'Правильно!'
-      bad: 'Не правильно!'
+      good: "You're wright!"
+      bad: "You're wrong!"
+  external_login:
+    signed_in_via:
+     success: 'You signed in via'
+     failure: 'Error during signing in via'
+

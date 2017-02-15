@@ -7,10 +7,16 @@ ru:
     links:
       all_cards: 'Все карточки'
       new_card: 'Добавить карточку'
+      profile: 'Профиль'
+      log_out: 'Выйти'
+      sign_up: 'Регистрация'
+      sign_in: 'Войти'
   header:
     title: 'Флешкарточкер'
   home:
     lead: 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
+  common_errors:
+    access_forbidden: 'Доступ запрещен'
   cards:
     index:
       title: 'Все карточки'
@@ -24,6 +30,17 @@ ru:
         btn: 'Редактировать'
     errors:
       texts_are_equal: 'Оригинальный и переведенный тексты должны отличаться!'
+  users:
+    create:
+      success: 'Регистрация прошла успешно'
+    update:
+      success: 'Профиль пользователя был обновлен'
+  user_sessions:
+    create:
+      success: 'Привет!'
+      failure: 'Не удалось войти! Проверьте имя пользователя и пароль.'
+    destroy:
+      success: 'Счастливо!'
   translation_check:
     form:
       labels:
@@ -32,3 +49,8 @@ ru:
     results:
       good: 'Правильно!'
       bad: 'Не правильно!'
+  external_login:
+    signed_in_via:
+     success: 'Вы зашли через'
+     failure: 'Ошибка при входе через'
+

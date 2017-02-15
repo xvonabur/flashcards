@@ -35,3 +35,4 @@
 # RVM local config
 .ruby-gemset
 .ruby-version
+.env

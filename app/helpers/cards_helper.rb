@@ -9,6 +9,7 @@ module CardsHelper
     level = level.to_s
     case level
       when 'success' then 'alert alert-success'
+      when 'notice' then 'alert alert-info'
       when 'alert' then 'alert alert-danger'
       when 'danger' then 'alert alert-danger'
     end
