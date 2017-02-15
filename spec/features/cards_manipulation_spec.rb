@@ -44,8 +44,8 @@ RSpec.feature 'Cards manipulation' do
         find('input[type=submit]').click
       end
 
-      scenario 'and does see a card original text' do
-        expect(page).to have_content(new_card_attrs[:original_text])
+      scenario 'and db saves it' do
+        expect(Card.last.original_text).to eq(new_card_attrs[:original_text])
       end
     end
 

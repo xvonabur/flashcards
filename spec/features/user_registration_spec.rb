@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.feature 'User registration' do
   before do
-    visit '/'
+    visit root_path
     find('#sign_up_link').click
   end
 

@@ -7,7 +7,7 @@ RSpec.feature 'User authorization' do
 
     before do
       create(:user)
-      visit '/'
+      visit root_path
     end
 
     scenario 'prints welcome message' do
@@ -25,7 +25,7 @@ RSpec.feature 'User authorization' do
     let!(:user) { create(:user) }
 
     scenario 'prints error messages' do
-      visit '/'
+      visit root_path
       find('#sign_in_link').click
 
       find('input[type=submit]').click
