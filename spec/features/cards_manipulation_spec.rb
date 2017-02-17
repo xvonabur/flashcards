@@ -41,11 +41,52 @@ RSpec.feature 'Cards manipulation' do
 
         fill_in 'card_original_text', with: new_card_attrs[:original_text]
         fill_in 'card_translated_text', with: new_card_attrs[:translated_text]
-        find('input[type=submit]').click
       end
 
       scenario 'and db saves it' do
+        find('input[type=submit]').click
+
         expect(Card.last.original_text).to eq(new_card_attrs[:original_text])
+      end
+
+      scenario 'with uploaded image' do
+        attach_file('card[image]', fixture_image_path)
+
+        find('input[type=submit]').click
+
+        expect(
+          Card.last.image.file.original_filename
+        ).to eq(File.basename fixture_image_path)
+      end
+
+      scenario 'with image URL' do
+        fill_in 'card_remote_image_url', with: fixture_image_url
+
+        find('input[type=submit]').click
+
+        expect(
+          Card.last.image.file.original_filename
+        ).to eq(File.basename fixture_image_url)
+      end
+    end
+
+    context 'User edits card' do
+      let!(:curr_user_card) { create(:card_with_image, user: user) }
+
+      before do
+        visit edit_card_path(curr_user_card.id)
+      end
+
+      scenario 'sees an image' do
+        expect(page).to have_css("img[src*='#{File.basename fixture_image_path}']")
+      end
+
+      scenario 'removes an image' do
+        check 'card_remove_image'
+
+        find('input[type=submit]').click
+
+        expect(curr_user_card.reload.image.file.nil?).to be_truthy
       end
     end
 

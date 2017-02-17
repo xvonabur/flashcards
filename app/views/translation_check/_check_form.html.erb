@@ -4,6 +4,7 @@
       <%= t('cards.template.header.title') %><%= card.id %>
     </div>
     <div class="card-block">
+      <%= image_tag(card.image_url) %>
       <h4 class="card-title">
         <%= card.translated_text %>
       </h4>

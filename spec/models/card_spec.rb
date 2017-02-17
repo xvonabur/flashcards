@@ -40,7 +40,7 @@ describe Card, type: :model do
     end
   end
 
-  context 'valid tranlation check result' do
+  context 'valid translation check result' do
     it 'returns for texts with different cases' do
       card = described_class.create(original_text: 'Original Text',
                                     translated_text: 'Оригинальный текст')
@@ -54,7 +54,7 @@ describe Card, type: :model do
     end
   end
 
-  context 'invalid tranlation check result' do
+  context 'invalid translation check result' do
     it 'returns for different texts' do
       card = described_class.create(original_text: 'With great power',
                                     translated_text: 'Чем больше сила')
