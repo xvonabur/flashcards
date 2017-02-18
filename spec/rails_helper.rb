@@ -10,6 +10,7 @@ require 'support/factory_girl'
 require 'capybara/rspec'
 require 'support/sorcery'
 require 'support/database_cleaner'
+require 'support/clean_uploads'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

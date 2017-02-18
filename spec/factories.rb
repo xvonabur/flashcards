@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 FactoryGirl.define do
   factory :authentication do
-    
+
   end
   factory :card do
     original_text     "This looks like a job for superman"
@@ -19,8 +19,21 @@ FactoryGirl.define do
     translated_text   "And I promise you, the dawn is coming."
   end
 
+  factory :card_with_image, parent: :another_expired_card do
+    image { Rack::Test::UploadedFile.new(fixture_image_path) }
+  end
+
   factory :user do
     email 'user@mail.com'
     password 'password123'
   end
+end
+
+def fixture_image_path(ext = 'png')
+  File.join(Rails.root, 'spec', 'fixtures', 'images', "bat-logo.#{ext}")
+end
+
+def fixture_image_url
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ruby_on_Rails_logo.svg'\
+  '/400px-Ruby_on_Rails_logo.svg.png'
 end

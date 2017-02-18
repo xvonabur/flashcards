@@ -36,3 +36,5 @@
 .ruby-gemset
 .ruby-version
 .env
+# User uploads
+public/uploads

@@ -43,6 +43,9 @@ gem "simple_form", "~> 3.4.0"
 gem "russian", "~> 0.6.0"
 gem "sorcery", "~> 0.10.2"
 gem "dotenv-rails", "~> 2.2.0"
+gem "carrierwave", "~> 1.0"
+gem "fog-aws", "~> 1.2.0"
+gem "mini_magick", "~> 4.6.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
