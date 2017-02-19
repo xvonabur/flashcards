@@ -3,7 +3,8 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
   context 'Guest runs forbidden operations' do
-    let!(:card) { create(:card) }
+    let!(:user) { create(:user) }
+    let!(:card) { create(:card, user: user, deck: create(:deck, user: user)) }
     let!(:new_original) { 'New original' }
 
     it 'does not change a card after trying to update it' do
@@ -19,7 +20,7 @@ RSpec.describe CardsController, type: :controller do
 
   context 'User manipulates her card data' do
     let!(:user) { create(:user) }
-    let!(:card) { create(:card, user: user) }
+    let!(:card) { create(:card, user: user, deck: create(:deck, user: user)) }
     let!(:new_card_attrs) do
       { original_text: 'New original text', translated_text: 'New translated text' }
     end
@@ -42,7 +43,10 @@ RSpec.describe CardsController, type: :controller do
   context 'User manipulates not owned card data' do
     let!(:user) { create(:user) }
     let!(:another_user) { create(:user, email: 'abc@mail.com') }
-    let!(:card) { create(:card, user: another_user) }
+    let!(:card) do
+      create(:card, user: another_user, deck: create(:deck, user: another_user))
+    end
+
     let!(:new_card_attrs) do
       { original_text: 'New original text', translated_text: 'New translated text' }
     end

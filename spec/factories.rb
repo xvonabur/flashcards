@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 FactoryGirl.define do
-  factory :authentication do
-
+  factory :deck do
+    name 'Awesome deck'
+    active false
+    user
   end
+
+  factory :active_deck, parent: :deck do
+    active true
+  end
+
   factory :card do
     original_text     "This looks like a job for superman"
     translated_text   "Doesn't need translation"
     review_date       3.days.from_now
     user
+    deck
   end
 
   factory :expired_card, parent: :card do

@@ -2,6 +2,7 @@
   <%= form.error_notification %>
   <%= form.input :original_text %>
   <%= form.input :translated_text %>
+  <%= form.input :deck_id, collection: decks %>
   <%= image_tag(card.image_url) if card.image? %>
   <%= form.input :remote_image_url, label: 'Fill in image URL' %>
   <%= form.input :image, as: :file, label: 'OR just upload it' %>

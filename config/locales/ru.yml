@@ -11,6 +11,8 @@ ru:
       log_out: 'Выйти'
       sign_up: 'Регистрация'
       sign_in: 'Войти'
+      all_decks: 'Все колоды'
+      new_deck: 'Добавить колоду'
   header:
     title: 'Флешкарточкер'
   home:
@@ -30,6 +32,19 @@ ru:
         btn: 'Редактировать'
     errors:
       texts_are_equal: 'Оригинальный и переведенный тексты должны отличаться!'
+  decks:
+    index:
+      title: 'Все колоды'
+    template:
+      header:
+        title: 'Колода #'
+      delete:
+        btn: 'Удалить'
+        confirm: 'Вы уверены, что хотите удалить колоду?'
+      edit:
+        btn: 'Редактировать'
+    errors:
+      no_decks: 'У вас нет ни одной колоды!'
   users:
     create:
       success: 'Регистрация прошла успешно'

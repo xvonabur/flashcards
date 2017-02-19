@@ -1,0 +1,20 @@
+<% if deck.present? %>
+  <% show_del_link ||= false %>
+  <div class="card text-center">
+    <div class="card-header">
+       <%= t('decks.template.header.title') %><%= deck.id %>
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">
+        <%= link_to deck.name, deck_path(deck) %>
+      </h4>
+      <%= link_to t('decks.template.edit.btn'), edit_deck_path(deck),
+                  class: 'btn btn-primary' %>
+      <% if show_del_link %>
+        <%= link_to t('decks.template.delete.btn'), deck_path(deck), method: :delete,
+          data: { confirm: t('decks.template.delete.confirm') },
+          class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

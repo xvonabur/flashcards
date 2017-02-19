@@ -3,7 +3,8 @@ require 'rails_helper'
 
 RSpec.describe TranslationCheckController, type: :controller do
   context 'Guest runs forbidden operations' do
-    let!(:card) { create(:card) }
+    let!(:user) { create(:user) }
+    let!(:card) { create(:card, user: user, deck: create(:deck, user: user)) }
 
     it 'redirects to root url for unsuccessful try to view card' do
       get(:show, params: { card: { id: card.id }})
@@ -28,7 +29,7 @@ RSpec.describe TranslationCheckController, type: :controller do
 
   context 'User manipulates her card data' do
     let!(:user) { create(:user) }
-    let!(:card) { create(:card, user: user) }
+    let!(:card) { create(:card, user: user, deck: create(:deck, user: user)) }
 
     before { login_user user }
 
@@ -51,7 +52,9 @@ RSpec.describe TranslationCheckController, type: :controller do
   context 'User manipulates not owned card data' do
     let!(:user) { create(:user) }
     let!(:another_user) { create(:user, email: 'abc@mail.com') }
-    let!(:card) { create(:card, user: another_user) }
+    let!(:card) do
+      create(:card, user: another_user, deck: create(:deck, user: another_user))
+    end
 
     before { login_user user }
 

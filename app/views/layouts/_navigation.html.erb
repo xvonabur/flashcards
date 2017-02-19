@@ -12,6 +12,16 @@
     <ul class="navbar-nav mr-auto">
       <% if current_user %>
         <li class="nav-item">
+          <%= link_to t('navigation.links.all_decks'), decks_path,
+                      id: 'all_decks_link',
+                      class: navbar_item_class('nav-link', decks_path) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('navigation.links.new_deck'), new_deck_path,
+                      id: 'add_deck_link',
+                      class: navbar_item_class('nav-link', new_deck_path) %>
+        </li>
+        <li class="nav-item">
           <%= link_to t('navigation.links.all_cards'), cards_path,
                       id: 'all_cards_link',
                       class: navbar_item_class('nav-link', cards_path) %>

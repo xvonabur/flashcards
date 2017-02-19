@@ -28,6 +28,14 @@ RSpec.describe 'layouts/_navigation' do
     it 'does not display new card link' do
       expect(rendered).to_not match I18n.t('navigation.links.new_card')
     end
+
+    it 'does not display new deck link' do
+      expect(rendered).to_not match I18n.t('navigation.links.new_deck')
+    end
+
+    it 'does not display all decks link' do
+      expect(rendered).to_not match I18n.t('navigation.links.all_deck')
+    end
   end
 
   context 'user navigation' do
@@ -58,6 +66,14 @@ RSpec.describe 'layouts/_navigation' do
 
     it 'displays new card link' do
       expect(rendered).to match I18n.t('navigation.links.new_card')
+    end
+
+    it 'displays new deck link' do
+      expect(rendered).to match I18n.t('navigation.links.new_deck')
+    end
+
+    it 'displays all decks link' do
+      expect(rendered).to match I18n.t('navigation.links.all_decks')
     end
   end
 end

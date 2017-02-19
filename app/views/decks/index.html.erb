@@ -1,0 +1,9 @@
+<h2><%= t('decks.index.title') %></h2>
+
+<div class="row">
+<% @decks.each do |deck| %>
+  <div class="col-md-6">
+    <%= render partial: 'decks/deck', locals: { deck: deck, show_del_link: true } %>
+  </div>
+<% end %>
+</div>

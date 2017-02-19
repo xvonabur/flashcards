@@ -2,6 +2,7 @@
 class CardsController < ApplicationController
   before_action :require_login
   before_action :fetch_card, only: [:show, :edit, :destroy, :update]
+  before_action :deck_exists?, only: [:new, :create]
 
   def index
     @cards = current_user.cards
@@ -40,13 +41,20 @@ class CardsController < ApplicationController
   def card_params
     params.require(:card).permit(:original_text, :translated_text,
                                  :review_date, :image, :image_cache,
-                                 :remove_image, :remote_image_url)
+                                 :remove_image, :remote_image_url, :deck_id)
   end
 
   def fetch_card
     @card = Card.find(params[:id])
     return if @card.user_id == current_user.id
     flash[:error] = I18n.t('common_errors.access_forbidden')
+    redirect_to cards_path
+  end
+
+  def deck_exists?
+    @decks = current_user.decks
+    return if @decks.present?
+    flash[:error] = I18n.t('decks.errors.no_decks')
     redirect_to cards_path
   end
 end

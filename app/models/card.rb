@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 class Card < ApplicationRecord
   belongs_to :user
+  belongs_to :deck
   mount_uploader :image, ImageUploader
 
   after_initialize :assign_review_date
 
-  validates :original_text, :translated_text, :user_id, presence: true
+  validates :original_text, :translated_text, :user_id, :deck_id, presence: true
   validates :review_date, presence: true, on: :create
   validate :texts_are_different?
 
