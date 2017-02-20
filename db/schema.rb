@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218171229) do
+ActiveRecord::Schema.define(version: 20170220120911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,8 @@ ActiveRecord::Schema.define(version: 20170218171229) do
   create_table "decks", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.boolean  "active",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170218171229) do
     t.datetime "updated_at"
     t.string   "crypted_password"
     t.string   "salt"
+    t.integer  "active_deck_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

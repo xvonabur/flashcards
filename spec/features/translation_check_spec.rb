@@ -54,7 +54,7 @@ RSpec.feature 'Translation check' do
   end
 
   context 'Card from active deck' do
-    let!(:active_deck) { create(:deck, user: user, active: true) }
+    let!(:active_deck) { create(:deck, user: user) }
     let!(:deck) { create(:deck, user: user) }
     let!(:active_deck_card) { create(:expired_card, user: user, deck: active_deck) }
     let!(:deck_card) { create(:expired_card, user: user, deck: deck) }

@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 FactoryGirl.define do
   factory :deck do
-    name 'Awesome deck'
-    active false
+    sequence(:name) { |n| "Awesome deck #{n}" }
     user
   end
 
   factory :active_deck, parent: :deck do
-    active true
+    after(:create) do |obj|
+      obj.user.update(active_deck_id: obj.id)
+    end
   end
 
   factory :card do

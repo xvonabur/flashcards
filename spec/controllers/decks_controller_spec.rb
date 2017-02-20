@@ -34,7 +34,7 @@ RSpec.describe DecksController, type: :controller do
     it 'changes deck active status successfully' do
       put(:update, params: { id: deck.id, deck: new_deck_attrs })
 
-      expect(deck.reload.active).to eq(new_deck_attrs[:active])
+      expect(user.active_deck).to eq(deck)
     end
 
     it 'changes deck attrs successfully' do
