@@ -20,7 +20,7 @@ RSpec.describe DecksController, type: :controller do
     let!(:user) { create(:user) }
     let!(:deck) { create(:deck, user: user) }
     let!(:new_deck_attrs) do
-      { name: 'New deck name', active: true }
+      { name: 'New deck name' }
     end
 
     before { login_user user }
@@ -29,12 +29,6 @@ RSpec.describe DecksController, type: :controller do
       put(:update, params: { id: deck.id, deck: new_deck_attrs })
 
       expect(deck.reload.name).to eq(new_deck_attrs[:name])
-    end
-
-    it 'changes deck active status successfully' do
-      put(:update, params: { id: deck.id, deck: new_deck_attrs })
-
-      expect(user.active_deck).to eq(deck)
     end
 
     it 'changes deck attrs successfully' do

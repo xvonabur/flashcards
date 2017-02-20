@@ -17,8 +17,8 @@ class User < ApplicationRecord
             if: -> { new_record? || changes[:crypted_password] }
 
   def card_to_check
-    active_deck = self.active_deck
-    active_deck.present? ? pick_card(active_deck.cards) : pick_card(self.cards)
+    self.active_deck.present? ?
+      pick_card(self.active_deck.cards) : pick_card(self.cards)
   end
 
   private

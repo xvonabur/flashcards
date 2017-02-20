@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create, :index]
   before_action :get_user_by_id, only: [:edit, :update, :destroy]
+  before_action :fetch_decks, only: [:edit, :create, :update]
 
   def index
     redirect_to(new_user_path)
@@ -48,5 +49,9 @@ class UsersController < ApplicationController
 
   def get_user_by_id
     @user = User.find(params[:id])
+  end
+
+  def fetch_decks
+    @decks = current_user.present? ? current_user.decks : nil
   end
 end

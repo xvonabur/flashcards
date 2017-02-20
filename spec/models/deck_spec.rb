@@ -9,14 +9,4 @@ RSpec.describe Deck, type: :model do
 
     expect(user.active_deck).to eq(active_deck)
   end
-
-  context 'active deck' do
-    let!(:deck) { deck = create(:deck, user: user) }
-
-    before { deck.update(active: true) }
-
-    it 'changes active deck after update' do
-      expect(deck.user.active_deck).to eq(deck)
-    end
-  end
 end
