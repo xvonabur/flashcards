@@ -2,7 +2,7 @@
 class CardsController < ApplicationController
   before_action :require_login
   before_action :fetch_card, only: [:show, :edit, :destroy, :update]
-  before_action :deck_exists?, only: [:new, :create]
+  before_action :deck_exists?, only: [:new, :edit, :create]
 
   def index
     @cards = current_user.cards
