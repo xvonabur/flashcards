@@ -5,7 +5,11 @@ RSpec.feature 'Cards manipulation' do
   # use let! to force the method's invocation before each example.
   let!(:user) { create(:user) }
   let!(:another_user) { create(:user, email: 'abc@mail.com') }
-  let!(:expired_card) { create(:expired_card, user: another_user) }
+  let!(:another_user_deck) { create(:deck, user: another_user) }
+  let!(:deck) { create(:deck, user: user) }
+  let!(:expired_card) do
+    create(:expired_card, user: another_user, deck: another_user_deck)
+  end
 
   before { login user }
 
@@ -16,7 +20,7 @@ RSpec.feature 'Cards manipulation' do
 
   context 'User sees only his cards' do
     let!(:user_card) do
-      create(:another_expired_card, user: user)
+      create(:another_expired_card, user: user, deck: deck)
     end
 
     before { visit cards_path }
@@ -32,7 +36,7 @@ RSpec.feature 'Cards manipulation' do
 
   context 'User creates a card' do
     let!(:new_card_attrs) do
-      FactoryGirl.attributes_for(:another_expired_card, user: user)
+      FactoryGirl.attributes_for(:another_expired_card, user: user, deck: deck)
     end
 
     context 'successfully' do
@@ -41,6 +45,7 @@ RSpec.feature 'Cards manipulation' do
 
         fill_in 'card_original_text', with: new_card_attrs[:original_text]
         fill_in 'card_translated_text', with: new_card_attrs[:translated_text]
+        select deck.name, from: 'card_deck_id'
       end
 
       scenario 'and db saves it' do
@@ -71,7 +76,7 @@ RSpec.feature 'Cards manipulation' do
     end
 
     context 'User edits card' do
-      let!(:curr_user_card) { create(:card_with_image, user: user) }
+      let!(:curr_user_card) { create(:card_with_image, user: user, deck: deck) }
 
       before do
         visit edit_card_path(curr_user_card.id)
@@ -98,7 +103,7 @@ RSpec.feature 'Cards manipulation' do
       end
 
       scenario 'and does see errors' do
-        card = build(:another_expired_card, user: user)
+        card = build(:another_expired_card, user: user, deck: deck)
         card.valid?
 
         card.errors.messages.values.each do |mess|

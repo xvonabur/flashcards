@@ -5,7 +5,8 @@ require 'carrierwave/test/matchers'
 RSpec.describe  ImageUploader do
   include CarrierWave::Test::Matchers
 
-  let(:card) { create(:card) }
+  let!(:user) { create(:user) }
+  let!(:card) { create(:card, user: user, deck: create(:deck, user: user)) }
   let(:uploader) { described_class.new(card, :image) }
   let(:base_image_path) { Rails.root.join('spec/fixtures/images') }
   let(:image_paths) do

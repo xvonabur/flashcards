@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :cards, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  has_many :decks, dependent: :destroy
+  belongs_to :active_deck, class_name: Deck, foreign_key: 'active_deck_id'
   accepts_nested_attributes_for :authentications
 
   validates :email, presence: true, uniqueness: true
@@ -13,4 +15,15 @@ class User < ApplicationRecord
             if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true,
             if: -> { new_record? || changes[:crypted_password] }
+
+  def card_to_check
+    self.active_deck.present? ?
+      pick_card(self.active_deck.cards) : pick_card(self.cards)
+  end
+
+  private
+
+  def pick_card(cards)
+    cards.blank? ? nil : cards.fetch_expired.random_one
+  end
 end

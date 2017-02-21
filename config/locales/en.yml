@@ -11,6 +11,8 @@ en:
       log_out: 'Log out'
       sign_up: 'Sign up'
       sign_in: 'Sign in'
+      all_decks: 'All decks'
+      new_deck: 'New deck'
   header:
     title: 'Flashcards'
   home:
@@ -30,6 +32,19 @@ en:
         btn: 'Edit'
     errors:
       texts_are_equal: 'Original and translated texts must not be equal!'
+  decks:
+    index:
+      title: 'All decks'
+    template:
+      header:
+        title: 'Deck #'
+      delete:
+        btn: 'Delete'
+        confirm: 'Are yo sure?'
+      edit:
+        btn: 'Edit'
+    errors:
+      no_decks: 'You have no decks!'
   users:
     create:
       success: 'User registration is successful'

@@ -4,7 +4,7 @@ class TranslationCheckController < ApplicationController
   before_action :fetch_owned_card, only: :create
 
   def show
-    @card = current_user.cards.fetch_expired.random_one
+    @card = current_user.card_to_check
   end
 
   def create

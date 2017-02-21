@@ -53,9 +53,10 @@ RSpec.describe UsersController, type: :controller do
 
   context 'User manipulates user data' do
     let!(:user) { create(:user) }
+    let!(:deck) { create(:deck, user: user) }
     let!(:new_user_attrs) do
       { email: 'abc@mail.com', password:  'abc123',
-        password_confirmation:  'abc123' }
+        password_confirmation: 'abc123', active_deck_id: deck.id }
     end
 
     before { login_user user }
@@ -66,11 +67,18 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to redirect_to(translation_check_path)
     end
 
-    it 'changes user attrs successfully' do
+    it 'changes user email successfully' do
       put(:update, params: { id: user.id, user: new_user_attrs })
 
       expect(user.reload.email).to eq(new_user_attrs[:email])
     end
+
+    it 'changes user active card successfully' do
+      put(:update, params: { id: user.id, user: new_user_attrs })
+
+      expect(user.reload.active_deck_id).to eq(new_user_attrs[:active_deck_id])
+    end
+
 
     it 'redirects to root url after successful destroy' do
       delete(:destroy, params: { id: user.id })

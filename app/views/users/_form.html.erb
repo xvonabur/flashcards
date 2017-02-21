@@ -4,6 +4,9 @@
     <%= form.input :email %>
     <%= form.input :password, as: :password %>
     <%= form.input :password_confirmation, as: :password %>
+    <% if local_assigns[:decks] %>
+      <%= form.input :active_deck_id, collection: decks %>
+    <% end %>
     <%= form.button :submit %>
   <% end %>
 <% end %>
