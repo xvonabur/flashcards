@@ -17,6 +17,12 @@ RSpec.describe UserSessionsController, type: :controller do
 
     before { login_user user }
 
+    it 'redirects to translation check page for root url' do
+      get :new
+
+      expect(response).to redirect_to(translation_check_path)
+    end
+
     it 'redirects to translation check page after successful login' do
       post(:create, params: {
         user_session: { email: user_attrs[:email], password: user_attrs[:password] }

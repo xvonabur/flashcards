@@ -30,6 +30,6 @@ class UserSessionsController < ApplicationController
 
   def already_signed_in?
     return unless logged_in?
-    redirect_to(cards_path)
+    redirect_to(translation_check_path)
   end
 end
