@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DecksController < ApplicationController
   before_action :require_login
   before_action :fetch_deck, only: [:show, :edit, :destroy, :update]

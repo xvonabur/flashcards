@@ -73,6 +73,28 @@ RSpec.feature 'Cards manipulation' do
           Card.last.image.file.original_filename
         ).to eq(File.basename fixture_image_url)
       end
+
+      scenario 'with deck' do
+        select deck.name, from: 'card_deck_id'
+
+        find('input[type=submit]').click
+
+        expect(Card.last.deck_id).to eq(deck.id)
+      end
+
+      scenario 'with review date' do
+        select '1', from: 'card[review_date(3i)]'
+        select I18n.t('date.common_month_names')[2], from: 'card[review_date(2i)]'
+        select '2016', from: 'card[review_date(1i)]'
+
+        find('input[type=submit]').click
+
+        expect(Card.last.review_date).to eq(Date.new(2016, 2, 1))
+      end
+
+      scenario 'form does not have remove card checkbox' do
+        expect(page).to_not have_css('.card_remove_image')
+      end
     end
 
     context 'User edits card' do

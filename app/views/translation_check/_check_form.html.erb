@@ -15,7 +15,8 @@
         <%= form.input :text_to_check, as: :fake,
                        input_html: { id: 'card_text_to_check',
                                      name: 'card[text_to_check]' } ,
-            label: t('translation_check.form.labels.text_to_check') %>
+            label: t('translation_check.form.labels.text_to_check'),
+            required: true %>
         <%= form.button :submit, t('translation_check.form.labels.check_btn') %>
       <% end %>
     </div>
