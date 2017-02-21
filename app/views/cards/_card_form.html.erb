@@ -8,6 +8,6 @@
   <%= form.input :remote_image_url, label: 'Fill in image URL' %>
   <%= form.input :image, as: :file, label: 'OR just upload it' %>
   <%= form.input :image_cache, as: :hidden %>
-  <%= form.input :remove_image, as: :boolean %>
+  <%= form.input :remove_image, as: :boolean if card.image? %>
   <%= form.button :submit %>
 <% end %>

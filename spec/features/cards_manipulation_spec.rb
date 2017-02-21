@@ -91,6 +91,10 @@ RSpec.feature 'Cards manipulation' do
 
         expect(Card.last.review_date).to eq(Date.new(2016, 2, 1))
       end
+
+      scenario 'form does not have remove card checkbox' do
+        expect(page).to_not have_css('.card_remove_image')
+      end
     end
 
     context 'User edits card' do
