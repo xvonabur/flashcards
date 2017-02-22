@@ -62,7 +62,7 @@ en:
         text_to_check: 'Fill in translation:'
         check_btn: 'Check'
     results:
-      good: "You're wright!"
+      good: "You're right!"
       bad: "You're wrong!"
   external_login:
     signed_in_via:
