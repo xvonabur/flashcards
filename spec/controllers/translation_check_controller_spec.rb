@@ -43,7 +43,7 @@ RSpec.describe TranslationCheckController, type: :controller do
     end
 
     it 'changes card review date successfully' do
-      travel_to Time.new(2017, 2, 22) do
+      travel_to Time.new(2017, 2, 22, 10, 0) do
         post(:create, params: {
           card: { id: card.id, text_to_check: card.original_text }
         })

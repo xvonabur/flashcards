@@ -15,10 +15,11 @@ FactoryGirl.define do
     original_text     "This looks like a job for superman"
     translated_text   "Doesn't need translation"
     review_date       3.days.from_now
-    good_checks       0
-    bad_checks        0
-    user
     deck
+
+    after(:initialize) do |obj|
+      obj.user = obj.deck.user
+    end
   end
 
   factory :expired_card, parent: :card do

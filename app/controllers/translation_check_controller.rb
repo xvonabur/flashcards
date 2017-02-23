@@ -9,10 +9,10 @@ class TranslationCheckController < ApplicationController
 
   def create
     if @card.original_text_check(card_params[:text_to_check])
-      @card.add_good_check
+      @card.right!
       flash[:success] = I18n.t('translation_check.results.good')
     else
-      @card.add_bad_check
+      @card.wrong!
       flash[:alert] = I18n.t('translation_check.results.bad')
     end
 
