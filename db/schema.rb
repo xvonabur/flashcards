@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170222123826) do
     t.integer  "user_id"
     t.string   "image"
     t.integer  "deck_id"
-    t.integer  "right_results",   default: 0
-    t.integer  "wrong_results",   default: 0
+    t.integer  "right_count",     default: 0
+    t.integer  "wrong_count",     default: 0
   end
 
   create_table "decks", force: :cascade do |t|

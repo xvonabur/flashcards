@@ -20,17 +20,17 @@ class Card < ApplicationRecord
   end
 
   def right!
-    self.right_results += 1
-    self.wrong_results = 0
+    self.right_count += 1
+    self.wrong_count = 0
     assign_review_date
-    self.save
+    save
   end
 
   def wrong!
-    self.right_results = 1 if self.wrong_results == 2
-    self.wrong_results += 1
+    self.right_count = 1 if self.wrong_count == 2
+    self.wrong_count += 1
     assign_review_date
-    self.save
+    save
   end
 
   private
@@ -52,6 +52,6 @@ class Card < ApplicationRecord
   end
 
   def assign_review_date
-    self.review_date = DELAYS[self.right_results].hours.from_now
+    self.review_date = DELAYS[self.right_count].hours.from_now
   end
 end

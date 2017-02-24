@@ -86,7 +86,7 @@ describe Card, type: :model do
 
     it 'sets review date to +12 hours after first good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_results: 0, deck: deck)
+        card = create(:card, user: deck.user, right_count: 0, deck: deck)
 
         card.right!
 
@@ -96,7 +96,7 @@ describe Card, type: :model do
 
     it 'sets review date to +3 days after second good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_results: 1, deck: deck)
+        card = create(:card, user: deck.user, right_count: 1, deck: deck)
 
         card.right!
 
@@ -106,7 +106,7 @@ describe Card, type: :model do
 
     it 'sets review date to +1 week after third good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_results: 2, deck: deck)
+        card = create(:card, user: deck.user, right_count: 2, deck: deck)
 
         card.right!
 
@@ -116,7 +116,7 @@ describe Card, type: :model do
 
     it 'sets review date to +1 week after forth good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_results: 3, deck: deck)
+        card = create(:card, user: deck.user, right_count: 3, deck: deck)
 
         card.right!
 
@@ -126,7 +126,7 @@ describe Card, type: :model do
 
     it 'sets review date to +1 week after forth good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_results: 4, deck: deck)
+        card = create(:card, user: deck.user, right_count: 4, deck: deck)
 
         card.right!
 
@@ -136,8 +136,8 @@ describe Card, type: :model do
 
     it 'sets right review date after first bad check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, wrong_results: 0,
-                             right_results: 3, deck: deck)
+        card = create(:card, user: deck.user, wrong_count: 0,
+                             right_count: 3, deck: deck)
 
         card.wrong!
 
@@ -147,8 +147,8 @@ describe Card, type: :model do
 
     it 'sets right review date after third bad check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, wrong_results: 2,
-                      right_results: 3, deck: deck)
+        card = create(:card, user: deck.user, wrong_count: 2,
+                      right_count: 3, deck: deck)
 
         card.wrong!
 
