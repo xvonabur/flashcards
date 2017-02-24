@@ -45,16 +45,16 @@ describe Card, type: :model do
   end
 
   context 'valid translation check result' do
-    it 'returns for texts with different cases' do
+    it 'returns 0 for texts with different cases' do
       card = described_class.create(original_text: 'Original Text',
                                     translated_text: 'Оригинальный текст')
-      expect(card.original_text_check('originaL tExt')).to eq(true)
+      expect(card.original_text_check('originaL tExt')).to eq(0)
     end
 
-    it 'returns for texts with the same cases' do
+    it 'returns 0 for texts with the same cases' do
       card = described_class.create(original_text: 'Kawabanga',
                                     translated_text: 'Кавабанга')
-      expect(card.original_text_check('Kawabanga')).to eq(true)
+      expect(card.original_text_check('Kawabanga')).to eq(0)
     end
   end
 
@@ -62,13 +62,13 @@ describe Card, type: :model do
     it 'returns for different texts' do
       card = described_class.create(original_text: 'With great power',
                                     translated_text: 'Чем больше сила')
-      expect(card.original_text_check('comes great responsibility')).to eq(false)
+      expect(card.original_text_check('comes great responsibility')).to eq(26)
     end
 
     it 'returns for empty text_to_check' do
       card = described_class.create(original_text: "It's a trap!",
                                     translated_text: 'Это ловушка!')
-      expect(card.original_text_check('')).to eq(false)
+      expect(card.original_text_check('')).to eq(12)
     end
   end
 

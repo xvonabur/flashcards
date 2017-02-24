@@ -16,7 +16,9 @@ class Card < ApplicationRecord
   DELAYS = [0, 12, 72, 168, 336, 672]
 
   def original_text_check(translation)
-    cleaned_text(self.original_text) == cleaned_text(translation.to_s)
+    db_text = cleaned_text(self.original_text)
+    passed_text = cleaned_text(translation.to_s)
+    Vladlev.distance(db_text, passed_text, 5)
   end
 
   def right!

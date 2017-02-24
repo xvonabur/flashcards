@@ -46,17 +46,19 @@ gem "dotenv-rails", "~> 2.2.0"
 gem "carrierwave", "~> 1.0"
 gem "fog-aws", "~> 1.2.0"
 gem "mini_magick", "~> 4.6.1"
+# Calculate the levenshtein distance between two strings
+gem "vladlev", "~> 1.0.3"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
   # stop execution and get a debugger console
   gem "byebug", platform: :mri
   gem "rspec-rails", "~> 3.5"
+  # Ruby static code analyzer
+  gem "rubocop-github", require: false
 end
 
 group :development do
-  # Ruby static code analyzer
-  gem "rubocop-github", require: false
   # Access an IRB console on exception pages or by using <%= console %>
   # anywhere in the code.
   gem "listen", "~> 3.0.5"
@@ -70,6 +72,8 @@ end
 group :test do
   gem "database_cleaner", "~> 1.5.3"
   gem "rails-controller-testing", "~> 1.0.1"
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -13,3 +13,9 @@ script:
 cache: bundler
 services:
   postgresql
+addons:
+  code_climate:
+    repo_token: Uy9GAXr7kpe8Cwzs1VTS
+# regular test configuration
+after_success:
+  - bundle exec codeclimate-test-reporter
