@@ -27,6 +27,20 @@ RSpec.feature 'Translation check' do
       expect(page).to have_text(I18n.t('translation_check.results.good'))
     end
 
+    scenario 'User enters almost right translation' do
+      original = expired_card.original_text
+      text_to_enter = "#{original}_1"
+
+      fill_in 'card_text_to_check', with: text_to_enter
+      click_button I18n.t('translation_check.form.labels.check_btn')
+
+      expected_message = I18n.t('translation_check.results.typo',
+                                translated: expired_card.translated_text,
+                                original: original,
+                                passed: text_to_enter)
+      expect(page).to have_text(expected_message)
+    end
+
     scenario 'User enters wrong translation' do
       fill_in 'card_text_to_check', with: '123'
       click_button I18n.t('translation_check.form.labels.check_btn')

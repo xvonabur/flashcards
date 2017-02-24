@@ -64,6 +64,7 @@ en:
     results:
       good: "You're right!"
       bad: "You're wrong!"
+      typo: "Almost right! The word '%{translated}' is '%{original}'. You entered '%{passed}'"
   external_login:
     signed_in_via:
      success: 'You signed in via'

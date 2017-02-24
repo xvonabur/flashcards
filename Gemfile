@@ -46,6 +46,8 @@ gem "dotenv-rails", "~> 2.2.0"
 gem "carrierwave", "~> 1.0"
 gem "fog-aws", "~> 1.2.0"
 gem "mini_magick", "~> 4.6.1"
+# Calculate the levenshtein distance between two strings
+gem "levenshtein-ffi", require: 'levenshtein'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
@@ -68,6 +70,8 @@ end
 group :test do
   gem "database_cleaner", "~> 1.5.3"
   gem "rails-controller-testing", "~> 1.0.1"
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

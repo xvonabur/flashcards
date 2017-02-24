@@ -64,6 +64,7 @@ ru:
     results:
       good: 'Правильно!'
       bad: 'Не правильно!'
+      typo: "Почти! Cлово '%{translated}' переводится как '%{original}'. Вы ввели '%{passed}'"
   external_login:
     signed_in_via:
      success: 'Вы зашли через'
