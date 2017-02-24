@@ -18,9 +18,8 @@ class Card < ApplicationRecord
   DELAYS = [0, 12, 72, 168, 336, 672]
 
   def original_text_check(translation)
-    db_text = cleaned_text(self.original_text)
-    passed_text = cleaned_text(translation.to_s)
-    Levenshtein.distance(db_text, passed_text.to_s)
+    Levenshtein.distance(cleaned_text(self.original_text),
+                         cleaned_text(translation.to_s).to_s)
   end
 
   def right!
