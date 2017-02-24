@@ -53,9 +53,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to
   # stop execution and get a debugger console
   gem "byebug", platform: :mri
-  gem "rspec-rails", "~> 3.5"
-  # Ruby static code analyzer
-  gem "rubocop-github", require: false
+  gem "rspec-rails", "~> 3.5"u
 end
 
 group :development do
