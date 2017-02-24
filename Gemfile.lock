@@ -114,6 +114,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.0.3)
     jwt (1.5.6)
+    levenshtein-ffi (1.1.0)
+      ffi (~> 1.9)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -252,8 +254,6 @@ GEM
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.3)
-    vladlev (1.0.3)
-      ffi
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -280,6 +280,7 @@ DEPENDENCIES
   fog-aws (~> 1.2.0)
   jbuilder (~> 2.5)
   jquery-rails
+  levenshtein-ffi
   listen (~> 3.0.5)
   mini_magick (~> 4.6.1)
   pg (~> 0.18)
@@ -298,7 +299,6 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
-  vladlev (~> 1.0.3)
   web-console (>= 3.3.0)
 
 BUNDLED WITH

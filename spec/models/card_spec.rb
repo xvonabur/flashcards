@@ -62,7 +62,7 @@ describe Card, type: :model do
     it 'returns for different texts' do
       card = described_class.create(original_text: 'With great power',
                                     translated_text: 'Чем больше сила')
-      expect(card.original_text_check('comes great responsibility')).to eq(26)
+      expect(card.original_text_check('comes great responsibility')).to eq(17)
     end
 
     it 'returns for empty text_to_check' do

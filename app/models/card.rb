@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'levenshtein'
+
 class Card < ApplicationRecord
   belongs_to :user
   belongs_to :deck
@@ -18,7 +20,7 @@ class Card < ApplicationRecord
   def original_text_check(translation)
     db_text = cleaned_text(self.original_text)
     passed_text = cleaned_text(translation.to_s)
-    Vladlev.distance(db_text, passed_text, 5)
+    Levenshtein.distance(db_text, passed_text.to_s)
   end
 
   def right!

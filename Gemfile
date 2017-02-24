@@ -47,7 +47,7 @@ gem "carrierwave", "~> 1.0"
 gem "fog-aws", "~> 1.2.0"
 gem "mini_magick", "~> 4.6.1"
 # Calculate the levenshtein distance between two strings
-gem "vladlev", "~> 1.0.3"
+gem "levenshtein-ffi", require: 'levenshtein'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
