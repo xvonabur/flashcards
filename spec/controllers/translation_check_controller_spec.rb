@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
 RSpec.describe TranslationCheckController, type: :controller do
   context 'Guest runs forbidden operations' do
@@ -42,10 +43,12 @@ RSpec.describe TranslationCheckController, type: :controller do
     end
 
     it 'changes card review date successfully' do
-      post(:create, params: {
-        card: { id: card.id, text_to_check: card.original_text }
-      })
-      expect(card.review_date).to_not eq(card.reload.review_date)
+      travel_to Time.new(2017, 2, 22, 10, 0) do
+        post(:create, params: {
+          card: { id: card.id, text_to_check: card.original_text }
+        })
+        expect(card.reload.review_date).to eq(Time.current + 12.hours)
+      end
     end
   end
 

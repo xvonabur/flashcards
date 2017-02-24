@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
 describe Card, type: :model do
+  TRAVEL_DATE = Time.new(2017, 2, 22, 10, 0, 0)
+
+
   context 'fetches expired cards' do
     it 'returns all expired cards' do
       create_cards(past_review_date: 3, future_review_date: 3)
@@ -68,21 +72,89 @@ describe Card, type: :model do
     end
   end
 
-  it 'sets review date to +3 days from now' do
-    deck = create(:deck)
-    card = create(:card, original_text: '1', translated_text: '2',
-                         review_date: Date.new(2017, 2, 2), user: deck.user,
-                         deck: deck)
+  it 'sets review date for new card' do
+    travel_to Time.new(2017, 2, 22, 10, 0, 0) do
+      card = build(:expired_card, review_date: Time.current)
 
-    card.update_review_date
-
-    expect(card.review_date.to_date).to eq(3.days.from_now.to_date)
+      expect(card.review_date).to eq(Time.current)
+    end
   end
 
-  it 'sets review date for new card' do
-    card = Card.new
+  context 'Right review date update' do
+    let!(:deck) { create(:deck) }
+    let!(:travel_time) { Time.new(2017, 2, 22, 10, 0, 0) }
 
-    expect(card.review_date.to_date).to eq(3.days.from_now.to_date)
+    it 'sets review date to +12 hours after first good check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, right_count: 0, deck: deck)
+
+        card.right!
+
+        expect(card.reload.review_date).to eq((Time.current + 12.hours))
+      end
+    end
+
+    it 'sets review date to +3 days after second good check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, right_count: 1, deck: deck)
+
+        card.right!
+
+        expect(card.reload.review_date).to eq((Time.current + 72.hours))
+      end
+    end
+
+    it 'sets review date to +1 week after third good check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, right_count: 2, deck: deck)
+
+        card.right!
+
+        expect(card.reload.review_date).to eq((Time.current + 168.hours))
+      end
+    end
+
+    it 'sets review date to +1 week after forth good check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, right_count: 3, deck: deck)
+
+        card.right!
+
+        expect(card.reload.review_date).to eq((Time.current + 336.hours))
+      end
+    end
+
+    it 'sets review date to +1 week after forth good check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, right_count: 4, deck: deck)
+
+        card.right!
+
+        expect(card.reload.review_date).to eq((Time.current + 672.hours))
+      end
+    end
+
+    it 'sets right review date after first bad check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, wrong_count: 0,
+                             right_count: 3, deck: deck)
+
+        card.wrong!
+
+        expect(card.reload.review_date).to eq(Time.current + 168.hours)
+      end
+    end
+
+    it 'sets right review date after third bad check' do
+      travel_to travel_time do
+        card = create(:card, user: deck.user, wrong_count: 2,
+                      right_count: 3, deck: deck)
+
+        card.wrong!
+
+        expect(card.reload.review_date).to eq(Time.current + 12.hours)
+      end
+    end
   end
 
   private

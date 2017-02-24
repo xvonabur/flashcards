@@ -18,7 +18,7 @@ RSpec.feature 'Translation check' do
       visit translation_check_path
     end
 
-    scenario 'User enters wright translation' do
+    scenario 'User enters right translation' do
       original = expired_card.original_text
 
       fill_in 'card_text_to_check', with: original
