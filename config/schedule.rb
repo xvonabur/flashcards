@@ -2,5 +2,5 @@
 set :output, "#{Rails.path}/log/cron.log"
 
 every :day do
-  runner "NotificationsMailer.pending_cards.deliver_now"
+  runner "User.notify_about_expired_cards"
 end
