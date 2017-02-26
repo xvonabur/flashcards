@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback' # for use with Facebook
@@ -16,4 +18,5 @@ Rails.application.routes.draw do
   post '/translation_check',
        to: 'translation_check#create', as: 'create_translation_check'
 
+  mount Sidekiq::Web => '/sidekiq'
 end

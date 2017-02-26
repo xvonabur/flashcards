@@ -28,4 +28,14 @@ describe User, type: :model do
   it 'returns a card from deck' do
     expect(user.card_to_check).to eq(deck_card)
   end
+
+  it 'sends an email about expired cards' do
+    another_user = create(:user, email: 'test123@mail.com')
+    create(:card, user: another_user,
+           deck: create(:deck, user: another_user))
+
+    expect {
+      described_class.notify_about_expired_cards
+    }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 end
