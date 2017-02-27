@@ -1,4 +1,4 @@
-Привет, <%= @user_email %>!
+<%= t('mailers.notifications.body.header', user_email: @user_email) %>
 ===============================================
 
-В твоих колодах есть карточки, которые ожидают просмотра.
+<%= t('mailers.notifications.body.section') %>

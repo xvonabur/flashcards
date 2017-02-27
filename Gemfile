@@ -50,6 +50,7 @@ gem "mini_magick", "~> 4.6.1"
 gem "levenshtein-ffi", require: 'levenshtein'
 gem "whenever", "~> 0.9.7", require: false
 gem "sidekiq", "~> 4.2.9"
+gem "http_accept_language", "~> 2.1.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to

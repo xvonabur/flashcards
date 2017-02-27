@@ -47,6 +47,14 @@ RSpec.feature 'User profile edit' do
 
       expect(page).to have_content I18n.t('users.update.success')
     end
+
+    scenario 'only locale' do
+      select 'en', from: 'user_locale'
+
+      find('input[type=submit]').click
+
+      expect(page).to have_content I18n.t('users.update.success')
+    end
   end
 
   context 'is not successful' do

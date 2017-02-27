@@ -9,6 +9,14 @@ RSpec.describe 'layouts/_navigation' do
       expect(rendered).to match I18n.t('navigation.links.sign_up')
     end
 
+    it 'displays language change link to ru' do
+      expect(rendered).to match 'ru'
+    end
+
+    it 'displays language change link to en' do
+      expect(rendered).to match 'en'
+    end
+
     it 'displays sign in link' do
       expect(rendered).to match I18n.t('navigation.links.sign_in')
     end
@@ -50,6 +58,14 @@ RSpec.describe 'layouts/_navigation' do
 
     it 'does not display sign in link' do
       expect(rendered).to_not match I18n.t('navigation.links.sign_in')
+    end
+
+    it 'does not display language change link to ru' do
+      expect(rendered).to_not match 'ru'
+    end
+
+    it 'does not display language change link to en' do
+      expect(rendered).to_not match 'en'
     end
 
     it 'displays log out link' do

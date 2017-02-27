@@ -46,11 +46,18 @@ en:
     errors:
       no_decks: 'You have no decks!'
   users:
+    new:
+      header: 'User sign up'
     create:
       success: 'User registration is successful'
+    edit:
+      header: 'User edit'
     update:
       success: 'Profile was updated'
   user_sessions:
+    new:
+      header: 'Sign in'
+      facebook: 'Login via Facebook'
     create:
       success: 'Hello!'
       failure: "Cannot sign in! Check user name and user password."
@@ -69,4 +76,10 @@ en:
     signed_in_via:
      success: 'You signed in via'
      failure: 'Error during signing in via'
+  mailers:
+    notifications:
+      subject: 'Come back! We have coolies!'
+      body:
+        header: "Hi, %{user_email}!"
+        section: 'You have cards to review.'
 

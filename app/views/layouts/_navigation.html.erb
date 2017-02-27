@@ -31,6 +31,13 @@
                       id: 'add_card_link',
                       class: navbar_item_class('nav-link', new_card_path) %>
         </li>
+      <% else %>
+        <% I18n.available_locales.each do |locale| %>
+          <li class="nav-item">
+            <%= link_to locale, "?locale=#{locale}", class: 'nav-link',
+                        id: "locale-#{locale}" %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
     <ul class="nav navbar-nav nav-masthead">

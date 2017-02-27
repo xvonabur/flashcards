@@ -1,5 +1,6 @@
-<h2>Войти</h2>
+<h2><%= t('user_sessions.new.header') %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Login with Facebook', auth_at_provider_path(provider: :facebook) %>
+<%= link_to t('user_sessions.new.facebook'),
+            auth_at_provider_path(provider: :facebook) %>

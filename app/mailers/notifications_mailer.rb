@@ -2,6 +2,6 @@
 class NotificationsMailer < ApplicationMailer
   def pending_cards(user_id)
     @user_email = User.find(user_id).email
-    mail(to: @user_email, subject: 'Come back! We have cookies!')
+    mail(to: @user_email, subject: I18n.t('mailers.notifications.subject'))
   end
 end

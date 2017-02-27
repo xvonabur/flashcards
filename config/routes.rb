@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root to: redirect('/login')
   resources :cards
   resources :decks
-  resources :users
+  resources :users, except: :show
   resources :user_sessions, only: [:new, :create, :destroy]
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout

@@ -5,6 +5,8 @@ en:
         original_text: "Original text"
         translated_text: "Translated text"
         review_date: "Review date"
+        remote_image_url: "Fill in image URL"
+        image: "OR just upload it"
     "yes": 'Yes'
     "no": 'No'
     required:

@@ -7,7 +7,7 @@ RSpec.describe NotificationsMailer, type: :mailer do
     let(:mail) { described_class.pending_cards(user.id) }
 
     it 'renders the subject' do
-      expect(mail.subject).to eq('Come back! We have cookies!')
+      expect(mail.subject).to eq(I18n.t('mailers.notifications.subject'))
     end
 
     it 'renders the receiver email' do
