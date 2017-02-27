@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def self.notify_about_expired_cards
-    Card.fetch_expired.pluck(:user_id).distinct.each do |user_id|
+    Card.fetch_expired.pluck('DISTINCT user_id').each do |user_id|
       NotificationsMailer.pending_cards(user_id).deliver
     end
   end
