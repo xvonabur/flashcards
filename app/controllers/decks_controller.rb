@@ -44,7 +44,7 @@ class DecksController < ApplicationController
   def fetch_deck
     @deck = current_user.decks.find_by(id: params[:id])
     return if @deck.present?
-    flash[:error] = I18n.t('common_errors.access_forbidden')
+    flash[:error] = t('common_errors.access_forbidden')
     redirect_to decks_path
   end
 end

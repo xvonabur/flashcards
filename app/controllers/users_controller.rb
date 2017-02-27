@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login(user_params[:email], user_params[:password])
-      redirect_to(translation_check_path, notice: I18n.t('users.create.success'))
+      redirect_to(translation_check_path, notice: t('.success'))
     else
       render action: 'new'
     end
@@ -28,8 +28,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to(translation_check_path, notice: I18n.t('users.update.success',
-                                                         locale: user_locale))
+      redirect_to(translation_check_path, notice: t('.success', locale: user_locale))
     else
       render action: 'edit'
     end

@@ -72,12 +72,12 @@ ru:
       good: 'Правильно!'
       bad: 'Не правильно!'
       typo: "Почти! Cлово '%{translated}' переводится как '%{original}'. Вы ввели '%{passed}'"
-  external_login:
-    signed_in_via:
+  oauths:
+    callback:
      success: 'Вы зашли через'
      failure: 'Ошибка при входе через'
-  mailers:
-    notifications:
+  notifications_mailer:
+    pending_cards:
       subject: 'Вернись! У нас есть печеньки!'
       body:
         header: "Привет, %{user_email}!"

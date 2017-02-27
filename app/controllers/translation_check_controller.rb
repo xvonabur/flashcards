@@ -11,16 +11,16 @@ class TranslationCheckController < ApplicationController
     distance = @card.original_text_check(card_params[:text_to_check])
     if distance == 0
       @card.right!
-      flash[:success] = I18n.t('translation_check.results.good')
+      flash[:success] = t('.results.good')
     elsif distance <= 5
       @card.right!
-      flash[:notice] = I18n.t('translation_check.results.typo',
-                                original: @card.original_text,
-                                translated: @card.translated_text,
-                                passed: card_params[:text_to_check])
+      flash[:notice] = t('.results.typo',
+                         original: @card.original_text,
+                         translated: @card.translated_text,
+                         passed: card_params[:text_to_check])
     else
       @card.wrong!
-      flash[:alert] = I18n.t('translation_check.results.bad')
+      flash[:alert] = t('.results.bad')
     end
 
     redirect_back(fallback_location: root_path)

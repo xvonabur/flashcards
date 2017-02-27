@@ -47,14 +47,14 @@ class CardsController < ApplicationController
   def fetch_card
     @card = Card.find(params[:id])
     return if @card.user_id == current_user.id
-    flash[:error] = I18n.t('common_errors.access_forbidden')
+    flash[:error] = t('common_errors.access_forbidden')
     redirect_to cards_path
   end
 
   def deck_exists?
     @decks = current_user.decks
     return if @decks.present?
-    flash[:error] = I18n.t('decks.errors.no_decks')
+    flash[:error] = t('.errors.no_decks')
     redirect_to cards_path
   end
 end

@@ -10,16 +10,16 @@ class UserSessionsController < ApplicationController
   def create
     if @user = login(session_params[:email], session_params[:password])
       redirect_back_or_to(translation_check_path,
-                          notice: I18n.t('user_sessions.create.success'))
+                          notice: t('.create.success'))
     else
-      flash.now[:alert] = I18n.t('user_sessions.create.failure')
+      flash.now[:alert] = t('.create.failure')
       render action: 'new'
     end
   end
 
   def destroy
     logout
-    redirect_to(root_path, notice: I18n.t('user_sessions.destroy.success'))
+    redirect_to(root_path, notice: t('.destroy.success'))
   end
 
   private

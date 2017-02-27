@@ -72,12 +72,12 @@ en:
       good: "You're right!"
       bad: "You're wrong!"
       typo: "Almost right! The word '%{translated}' is '%{original}'. You entered '%{passed}'"
-  external_login:
-    signed_in_via:
+  oauths:
+    callback:
      success: 'You signed in via'
      failure: 'Error during signing in via'
-  mailers:
-    notifications:
+  notifications_mailer:
+    pending_cards:
       subject: 'Come back! We have coolies!'
       body:
         header: "Hi, %{user_email}!"
