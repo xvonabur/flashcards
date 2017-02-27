@@ -21,6 +21,12 @@ class User < ApplicationRecord
       pick_card(self.active_deck.cards) : pick_card(self.cards)
   end
 
+  def self.notify_about_expired_cards
+    Card.fetch_expired.pluck('DISTINCT user_id').each do |user_id|
+      NotificationsMailer.pending_cards(user_id).deliver
+    end
+  end
+
   private
 
   def pick_card(cards)

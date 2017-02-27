@@ -48,6 +48,8 @@ gem "fog-aws", "~> 1.2.0"
 gem "mini_magick", "~> 4.6.1"
 # Calculate the levenshtein distance between two strings
 gem "levenshtein-ffi", require: 'levenshtein'
+gem "whenever", "~> 0.9.7", require: false
+gem "sidekiq", "~> 4.2.9"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
