@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require tether.min
 //= require bootstrap.min
+//= require translation_check
 //= require turbolinks

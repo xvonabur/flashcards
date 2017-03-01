@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222123826) do
+ActiveRecord::Schema.define(version: 20170228193448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,15 @@ ActiveRecord::Schema.define(version: 20170222123826) do
     t.text     "original_text"
     t.text     "translated_text"
     t.datetime "review_date"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "user_id"
     t.string   "image"
     t.integer  "deck_id"
-    t.integer  "right_count",     default: 0
-    t.integer  "wrong_count",     default: 0
+    t.float    "factor",          default: 2.5
+    t.integer  "interval",        default: 0
+    t.integer  "rep_number",      default: 0
+    t.integer  "quality",         default: 0
   end
 
   create_table "decks", force: :cascade do |t|
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170222123826) do
     t.string   "crypted_password"
     t.string   "salt"
     t.integer  "active_deck_id"
+    t.string   "locale",           default: "ru"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

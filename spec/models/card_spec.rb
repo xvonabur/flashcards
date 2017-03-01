@@ -84,76 +84,62 @@ describe Card, type: :model do
     let!(:deck) { create(:deck) }
     let!(:travel_time) { Time.new(2017, 2, 22, 10, 0, 0) }
 
-    it 'sets review date to +12 hours after first good check' do
+    it 'sets review date to tomorrow after first good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_count: 0, deck: deck)
+        card = create(:card, user: deck.user, deck: deck)
 
-        card.right!
+        card.right!(5)
 
-        expect(card.reload.review_date).to eq((Time.current + 12.hours))
+        expect(card.reload.review_date).to eq(1.day.from_now)
       end
     end
 
-    it 'sets review date to +3 days after second good check' do
+    it 'sets review date to +6 days after second good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_count: 1, deck: deck)
+        card = create(:card, user: deck.user, rep_number: 1, deck: deck)
 
-        card.right!
+        card.right!(4)
 
-        expect(card.reload.review_date).to eq((Time.current + 72.hours))
+        expect(card.reload.review_date).to eq(6.days.from_now)
       end
     end
 
-    it 'sets review date to +1 week after third good check' do
+    it 'sets review date to +26 days after third good check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, right_count: 2, deck: deck)
+        card = create(:card, user: deck.user, rep_number: 2, interval: 6,
+                      factor: 4.1, deck: deck)
 
-        card.right!
+        card.right!(5)
 
-        expect(card.reload.review_date).to eq((Time.current + 168.hours))
-      end
-    end
-
-    it 'sets review date to +1 week after forth good check' do
-      travel_to travel_time do
-        card = create(:card, user: deck.user, right_count: 3, deck: deck)
-
-        card.right!
-
-        expect(card.reload.review_date).to eq((Time.current + 336.hours))
-      end
-    end
-
-    it 'sets review date to +1 week after forth good check' do
-      travel_to travel_time do
-        card = create(:card, user: deck.user, right_count: 4, deck: deck)
-
-        card.right!
-
-        expect(card.reload.review_date).to eq((Time.current + 672.hours))
+        expect(card.reload.review_date).to eq(26.days.from_now)
       end
     end
 
     it 'sets right review date after first bad check' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, wrong_count: 0,
-                             right_count: 3, deck: deck)
+        card = create(:card, user: deck.user, deck: deck)
 
-        card.wrong!
+        card.wrong!(2)
 
-        expect(card.reload.review_date).to eq(Time.current + 168.hours)
+        expect(card.reload.review_date).to eq(1.day.from_now)
       end
     end
 
-    it 'sets right review date after third bad check' do
+    it 'sets right rep_number after first bad check with quality < 3' do
       travel_to travel_time do
-        card = create(:card, user: deck.user, wrong_count: 2,
-                      right_count: 3, deck: deck)
+        card = create(:card, user: deck.user, deck: deck, rep_number: 3, interval: 1)
 
-        card.wrong!
+        card.wrong!(2)
 
-        expect(card.reload.review_date).to eq(Time.current + 12.hours)
+        expect(card.reload.rep_number).to eq(1)
       end
+    end
+
+    it 'returns only cards with quality < 4' do
+      2.times { create(:expired_card, user: deck.user, deck: deck, quality: 4) }
+      3.times { create(:expired_card, user: deck.user, deck: deck, quality: 1) }
+
+      expect(described_class.to_review.count).to eq(3)
     end
   end
 

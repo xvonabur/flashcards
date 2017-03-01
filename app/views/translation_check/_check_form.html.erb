@@ -10,8 +10,12 @@
       </h4>
       <%= simple_form_for(card, as: :card, wrapper: :vertical_form,
                           url: create_translation_check_path,
-                          method: :post) do |form| %>
+                          method: :post, html: { id: 'translation_check' }) do |form| %>
         <%= form.input :id, as: :hidden %>
+        <%= form.input :answer_time, as: :hidden_fake,
+                       input_html: { id: 'card_answer_time',
+                                     name: 'card[answer_time]',
+                                     value: 0 } %>
         <%= form.input :text_to_check, as: :fake,
                        input_html: { id: 'card_text_to_check',
                                      name: 'card[text_to_check]' } ,
