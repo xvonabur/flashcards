@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddSuperMemoColumnsToCards < ActiveRecord::Migration[5.0]
   def change
     add_column :cards, :factor, :float, default: 2.5
