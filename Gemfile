@@ -52,6 +52,10 @@ gem "whenever", "~> 0.9.7", require: false
 gem "sidekiq", "~> 4.2.9"
 gem "http_accept_language", "~> 2.1.0"
 
+gem "rollbar", "~> 2.14.0"
+gem "newrelic_rpm", "~> 3.18.1.330"
+gem "mailgun_rails", "~> 0.9.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to
   # stop execution and get a debugger console
