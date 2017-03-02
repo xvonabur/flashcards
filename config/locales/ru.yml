@@ -35,16 +35,17 @@ ru:
   decks:
     index:
       title: 'Все колоды'
-    template:
-      header:
-        title: 'Колода #'
-      delete:
-        btn: 'Удалить'
-        confirm: 'Вы уверены, что хотите удалить колоду?'
-      edit:
-        btn: 'Редактировать'
     errors:
       no_decks: 'У вас нет ни одной колоды!'
+    deck:
+      template:
+        header:
+          title: 'Колода #'
+        delete:
+          btn: 'Удалить'
+          confirm: 'Вы уверены, что хотите удалить колоду?'
+        edit:
+          btn: 'Редактировать'
   users:
     create:
       success: 'Регистрация прошла успешно'

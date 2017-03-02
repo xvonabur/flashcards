@@ -30,6 +30,6 @@ class User < ApplicationRecord
   private
 
   def pick_card(cards)
-    cards.blank? ? nil : cards.fetch_expired.random_one
+    cards.blank? ? nil : cards.to_review.random_one
   end
 end

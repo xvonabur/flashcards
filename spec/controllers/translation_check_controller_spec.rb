@@ -47,7 +47,7 @@ RSpec.describe TranslationCheckController, type: :controller do
         post(:create, params: {
           card: { id: card.id, text_to_check: card.original_text }
         })
-        expect(card.reload.review_date).to eq(Time.current + 12.hours)
+        expect(card.reload.review_date).to eq(1.day.from_now)
       end
     end
   end
