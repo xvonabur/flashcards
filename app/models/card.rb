@@ -54,8 +54,8 @@ class Card < ApplicationRecord
                               last_rep_number: self.rep_number,
                               last_interval: self.interval)
 
-    self.update(quality: calculator.quality, factor: calculator.factor,
-                rep_number: calculator.rep_number, interval: calculator.interval,
-                review_date: calculator.interval.days.from_now)
+    update(quality: calculator.quality, factor: calculator.factor,
+           rep_number: calculator.rep_number, interval: calculator.interval,
+           review_date: calculator.interval.days.from_now)
   end
 end
