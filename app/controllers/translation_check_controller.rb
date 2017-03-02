@@ -9,17 +9,18 @@ class TranslationCheckController < ApplicationController
 
   def create
     distance = @card.original_text_check(card_params[:text_to_check])
+    answer_time = card_params[:answer_time]
     if distance == 0
-      @card.right!
+      @card.right!(answer_time)
       flash[:success] = t('.results.good')
     elsif distance <= 5
-      @card.right!
+      @card.right!(answer_time)
       flash[:notice] = t('.results.typo',
                          original: @card.original_text,
                          translated: @card.translated_text,
                          passed: card_params[:text_to_check])
     else
-      @card.wrong!
+      @card.wrong!(answer_time)
       flash[:alert] = t('.results.bad')
     end
 
@@ -29,7 +30,7 @@ class TranslationCheckController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:id, :text_to_check)
+    params.require(:card).permit(:id, :text_to_check, :answer_time)
   end
 
   def fetch_owned_card

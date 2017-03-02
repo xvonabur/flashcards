@@ -35,16 +35,17 @@ en:
   decks:
     index:
       title: 'All decks'
-    template:
-      header:
-        title: 'Deck #'
-      delete:
-        btn: 'Delete'
-        confirm: 'Are yo sure?'
-      edit:
-        btn: 'Edit'
     errors:
       no_decks: 'You have no decks!'
+    deck:
+      template:
+        header:
+          title: 'Deck #'
+        delete:
+          btn: 'Delete'
+          confirm: 'Are yo sure?'
+        edit:
+          btn: 'Edit'
   users:
     new:
       header: 'User sign up'

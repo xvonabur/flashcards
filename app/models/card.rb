@@ -14,26 +14,19 @@ class Card < ApplicationRecord
 
   scope :random_one, -> { order('RANDOM()').first }
   scope :fetch_expired, -> { where('review_date <= ?', Time.now.end_of_day) }
-
-  DELAYS = [0, 12, 72, 168, 336, 672]
+  scope :to_review, -> { fetch_expired.where('quality < 4') }
 
   def original_text_check(translation)
     Levenshtein.distance(cleaned_text(self.original_text),
                          cleaned_text(translation.to_s).to_s)
   end
 
-  def right!
-    self.right_count += 1
-    self.wrong_count = 0
-    assign_review_date
-    save
+  def right!(seconds)
+    update_review_attrs(seconds, true)
   end
 
-  def wrong!
-    self.right_count = 1 if self.wrong_count == 2
-    self.wrong_count += 1
-    assign_review_date
-    save
+  def wrong!(seconds)
+    update_review_attrs(seconds, false)
   end
 
   private
@@ -54,7 +47,15 @@ class Card < ApplicationRecord
     self.review_date ||= Time.current
   end
 
-  def assign_review_date
-    self.review_date = DELAYS[self.right_count].hours.from_now
+  def update_review_attrs(seconds, right_answer)
+    calculator =
+      SuperMemoCalculator.new(seconds: seconds, right_answer: right_answer,
+                              last_factor: self.factor,
+                              last_rep_number: self.rep_number,
+                              last_interval: self.interval)
+
+    update(quality: calculator.quality, factor: calculator.factor,
+           rep_number: calculator.rep_number, interval: calculator.interval,
+           review_date: calculator.interval.days.from_now)
   end
 end
