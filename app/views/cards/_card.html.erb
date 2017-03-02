@@ -2,18 +2,18 @@
   <% show_del_link ||= false %>
   <div class="card text-center">
     <div class="card-header">
-       <%= t('cards.template.header.title') %><%= card.id %>
+       <%= t('.template.header.title') %><%= card.id %>
     </div>
     <div class="card-block">
       <%= image_tag(card.image_url) %>
       <h4 class="card-title">
         <%= link_to card.original_text, card_path(card) %>
       </h4>
-      <%= link_to t('cards.template.edit.btn'), edit_card_path(card),
+      <%= link_to t('.template.edit.btn'), edit_card_path(card),
                   class: 'btn btn-primary' %>
       <% if show_del_link %>
-        <%= link_to t('cards.template.delete.btn'), card_path(card), method: :delete,
-          data: { confirm: t('cards.template.delete.confirm') },
+        <%= link_to t('.template.delete.btn'), card_path(card), method: :delete,
+          data: { confirm: t('.template.delete.confirm') },
           class: 'btn btn-danger' %>
       <% end %>
     </div>

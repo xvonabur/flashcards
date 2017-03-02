@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login(user_params[:email], user_params[:password])
-      redirect_to(translation_check_path, notice: I18n.t('users.create.success'))
+      redirect_to(translation_check_path, notice: t('.success'))
     else
       render action: 'new'
     end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to(translation_check_path, notice: I18n.t('users.update.success'))
+      redirect_to(translation_check_path, notice: t('.success', locale: user_locale))
     else
       render action: 'edit'
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
-                                 :active_deck_id)
+                                 :active_deck_id, :locale)
   end
 
   def get_user_by_id
@@ -53,5 +53,9 @@ class UsersController < ApplicationController
 
   def fetch_decks
     @decks = current_user.present? ? current_user.decks : nil
+  end
+
+  def user_locale
+    user_params[:locale].blank? ? current_locale : user_params[:locale].to_s
   end
 end

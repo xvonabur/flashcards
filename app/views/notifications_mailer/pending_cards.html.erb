@@ -1,4 +1,6 @@
-<h1>Привет, <%= @user_email %>!</h1>
+<h1>
+  <%= t('.body.header', user_email: @user_email) %>
+</h1>
 <p>
-  В твоих колодах есть карточки, которые ожидают просмотра.
+  <%= t('.body.section') %>
 </p>

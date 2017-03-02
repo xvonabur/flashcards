@@ -27,11 +27,11 @@ class OauthsController < ApplicationController
   private
 
   def success_message(provider)
-    "#{I18n.t('external_login.signed_in_via.success')} #{provider.titleize}!"
+    "#{t('.success')} #{provider.titleize}!"
   end
 
   def failure_message(provider)
-    "#{I18n.t('external_login.signed_in_via.failure')} #{provider.titleize}!"
+    "#{t('.failure')} #{provider.titleize}!"
   end
 
   def auth_params

@@ -47,11 +47,18 @@ ru:
         edit:
           btn: 'Редактировать'
   users:
+    new:
+      header: 'Регистрация нового пользователя'
     create:
       success: 'Регистрация прошла успешно'
+    edit:
+      header: 'Редактирование пользователя'
     update:
       success: 'Профиль пользователя был обновлен'
   user_sessions:
+    new:
+      header: 'Войти'
+      facebook: 'Войти через Facebook'
     create:
       success: 'Привет!'
       failure: 'Не удалось войти! Проверьте имя пользователя и пароль.'
@@ -66,8 +73,14 @@ ru:
       good: 'Правильно!'
       bad: 'Не правильно!'
       typo: "Почти! Cлово '%{translated}' переводится как '%{original}'. Вы ввели '%{passed}'"
-  external_login:
-    signed_in_via:
+  oauths:
+    callback:
      success: 'Вы зашли через'
      failure: 'Ошибка при входе через'
+  notifications_mailer:
+    pending_cards:
+      subject: 'Вернись! У нас есть печеньки!'
+      body:
+        header: "Привет, %{user_email}!"
+        section: 'В твоих колодах есть карточки, которые ожидают просмотра.'
 

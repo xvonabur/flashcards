@@ -1,5 +1,5 @@
-<h2>Войти</h2>
+<h2><%= t('.header') %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Login with Facebook', auth_at_provider_path(provider: :facebook) %>
+<%= link_to t('.facebook'), auth_at_provider_path(provider: :facebook) %>
