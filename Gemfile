@@ -51,10 +51,11 @@ gem "levenshtein-ffi", require: 'levenshtein'
 gem "whenever", "~> 0.9.7", require: false
 gem "sidekiq", "~> 4.2.9"
 gem "http_accept_language", "~> 2.1.0"
-
-gem "rollbar", "~> 2.14.0"
+gem "raygun4ruby", "~> 1.1.12"
 gem "newrelic_rpm", "~> 3.18.1.330"
 gem "mailgun_rails", "~> 0.9.0"
+# Fix --jbuilder warnings
+gem "thor", "0.19.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to
@@ -76,7 +77,7 @@ end
 
 group :test do
   gem "database_cleaner", "~> 1.5.3"
-  gem "rails-controller-testing", "~> 1.0.1"
+  gem "rails-controller-testing", "~> 1.0.1", require: false
   gem "simplecov"
   gem "codeclimate-test-reporter", "~> 1.0.0"
 end

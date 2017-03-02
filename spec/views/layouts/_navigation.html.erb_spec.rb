@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe 'layouts/_navigation' do
+RSpec.describe 'layouts/_navigation.html.erb' do
   context 'guest navigation' do
     before { render partial: 'layouts/navigation.html.erb' }
 
@@ -42,7 +42,7 @@ RSpec.describe 'layouts/_navigation' do
     end
 
     it 'does not display all decks link' do
-      expect(rendered).to_not match I18n.t('navigation.links.all_deck')
+      expect(rendered).to_not match I18n.t('navigation.links.all_decks')
     end
   end
 
