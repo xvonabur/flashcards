@@ -2,29 +2,20 @@
 class TranslationCheckController < ApplicationController
   before_action :require_login
   before_action :fetch_owned_card, only: :create
-
-  def show
-    @card = current_user.card_to_check
-  end
+  before_action :fetch_card_to_check, only: :show
 
   def create
     distance = @card.original_text_check(card_params[:text_to_check])
     answer_time = card_params[:answer_time]
-    if distance == 0
-      @card.right!(answer_time)
-      flash[:success] = t('.results.good')
-    elsif distance <= 5
-      @card.right!(answer_time)
-      flash[:notice] = t('.results.typo',
-                         original: @card.original_text,
-                         translated: @card.translated_text,
-                         passed: card_params[:text_to_check])
-    else
-      @card.wrong!(answer_time)
-      flash[:alert] = t('.results.bad')
-    end
+    update_card_attrs(distance, answer_time)
 
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html do
+        flash.keep
+        redirect_back(fallback_location: root_path)
+      end
+      format.js { fetch_card_to_check }
+    end
   end
 
   private
@@ -38,5 +29,26 @@ class TranslationCheckController < ApplicationController
 
     return unless @card.blank?
     redirect_back(fallback_location: root_path)
+  end
+
+  def update_card_attrs(distance, answer_time)
+    flash.clear
+    if distance == 0
+      @card.right!(answer_time)
+      flash.now[:success] = t('.results.good')
+    elsif distance <= 5
+      @card.right!(answer_time)
+      flash.now[:notice] = t('.results.typo',
+                         original: @card.original_text,
+                         translated: @card.translated_text,
+                         passed: card_params[:text_to_check])
+    else
+      @card.wrong!(answer_time)
+      flash.now[:alert] = t('.results.bad')
+    end
+  end
+
+  def fetch_card_to_check
+    @card = current_user.card_to_check
   end
 end

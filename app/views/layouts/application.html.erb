@@ -13,7 +13,9 @@
     <%= render partial: 'layouts/navigation' %>
     <%= render partial: 'layouts/header' %>
     <div class="container">
-      <%= render partial: 'layouts/flash_messages' %>
+      <div id="flash-messages">
+        <%= render partial: 'layouts/flash_messages' %>
+      </div>
       <%= yield %>
     </div>
   </body>

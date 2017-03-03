@@ -10,6 +10,7 @@
       </h4>
       <%= simple_form_for(card, as: :card, wrapper: :vertical_form,
                           url: create_translation_check_path,
+                          remote: true,
                           method: :post, html: { id: 'translation_check' }) do |form| %>
         <%= form.input :id, as: :hidden %>
         <%= form.input :answer_time, as: :hidden_fake,
