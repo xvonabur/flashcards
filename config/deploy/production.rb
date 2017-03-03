@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 server "35.156.16.70", user: "deploy", roles: %w{app db web}
 
 # server "35.156.16.70",
