@@ -15,4 +15,3 @@
 //= require tether.min
 //= require bootstrap.min
 //= require translation_check
-//= require turbolinks
