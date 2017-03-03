@@ -55,4 +55,10 @@ Rails.application.configure do
 
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
   config.active_job.queue_adapter = :sidekiq
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV["MAILGUN_KEY"],
+    domain: ENV["MAILGUN_DOMAIN"]
+  }
 end

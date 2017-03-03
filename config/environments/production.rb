@@ -86,4 +86,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   config.active_job.queue_adapter = :sidekiq
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV["MAILGUN_KEY"],
+    domain: ENV["MAILGUN_DOMAIN"]
+  }
 end
