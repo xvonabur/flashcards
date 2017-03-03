@@ -142,7 +142,7 @@
 
     # Rails setup | копируем .env с нашими настройками
     - name: 'rails | copy .env'
-      copy: 'src=../../.env.production dest={{ application }}/shared/.env owner={{ user }} group={{ user }} mode=0644'
+      copy: 'src=../../.env.production dest={{ application }}/shared/.env.production owner={{ user }} group={{ user }} mode=0644'
 
     # Установка и настройка веб сервера nginx
     - name: 'nginx | check config'
