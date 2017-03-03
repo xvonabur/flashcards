@@ -52,13 +52,13 @@ en:
         header: 'User sign up'
       create:
         success: 'User registration is successful'
-  user_sessions:
-    new:
-      header: 'Sign in'
-      facebook: 'Login via Facebook'
-    create:
-      success: 'Hello!'
-      failure: "Cannot sign in! Check user name and user password."
+    user_sessions:
+      new:
+        header: 'Sign in'
+        facebook: 'Login via Facebook'
+      create:
+        success: 'Hello!'
+        failure: "Cannot sign in! Check user name and user password."
   dashboard:
     translation_check:
       form:
