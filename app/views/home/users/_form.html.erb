@@ -1,0 +1,14 @@
+<% if local_assigns[:user] %>
+  <%= simple_form_for([:home, user]) do |form| %>
+    <%= form.error_notification %>
+    <%= form.input :email %>
+    <%= form.input :password, as: :password %>
+    <%= form.input :password_confirmation, as: :password %>
+    <% if local_assigns[:decks] %>
+      <%= form.input :active_deck_id, collection: decks %>
+    <% end %>
+    <%= form.input :locale, collection: I18n.available_locales,
+                   include_blank: false %>
+    <%= form.button :submit %>
+  <% end %>
+<% end %>

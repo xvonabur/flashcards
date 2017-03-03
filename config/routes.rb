@@ -2,21 +2,27 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  post 'oauth/callback' => 'oauths#callback'
-  get 'oauth/callback' => 'oauths#callback' # for use with Facebook
-  get 'oauth/:provider' => 'oauths#oauth', as: :auth_at_provider
+  namespace :home do
+    post 'oauth/callback' => 'oauths#callback'
+    get 'oauth/callback' => 'oauths#callback' # for use with Facebook
+    get 'oauth/:provider' => 'oauths#oauth', as: :auth_at_provider
+    resources :user_sessions, only: [:new, :create]
+    resources :users, only: [:index, :new, :create]
+  end
 
-  root to: redirect('/login')
-  resources :cards
-  resources :decks
-  resources :users, except: :show
-  resources :user_sessions, only: [:new, :create, :destroy]
-  get 'login' => 'user_sessions#new', as: :login
-  post 'logout' => 'user_sessions#destroy', as: :logout
+  namespace :dashboard do
+    resources :cards
+    resources :decks
+    get '/translation_check' => 'translation_check#show', as: 'translation_check'
+    post '/translation_check',
+         to: 'translation_check#create', as: 'create_translation_check'
+    resources :user_sessions, only: :destroy
+    resources :users, only: [:edit, :update, :destroy]
+  end
 
-  get '/translation_check' => 'translation_check#show', as: 'translation_check'
-  post '/translation_check',
-       to: 'translation_check#create', as: 'create_translation_check'
+  get 'login' => 'home/user_sessions#new', as: :login
+  post 'logout' => 'dashboard/user_sessions#destroy', as: :logout
 
   mount Sidekiq::Web => '/sidekiq'
+  root to: redirect('/login')
 end

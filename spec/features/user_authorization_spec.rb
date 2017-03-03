@@ -17,7 +17,7 @@ RSpec.feature 'User authorization' do
       fill_in 'user_session_password', with: user_attrs[:password]
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('user_sessions.create.success')
+      expect(page).to have_content I18n.t('home.user_sessions.create.success')
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.feature 'User authorization' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('user_sessions.create.failure')
+      expect(page).to have_content I18n.t('home.user_sessions.create.failure')
     end
   end
 end

@@ -14,7 +14,7 @@ RSpec.feature 'Cards manipulation' do
   before { login user }
 
   scenario 'User tries to edit not owned card' do
-    visit edit_card_path(expired_card.id)
+    visit edit_dashboard_card_path(expired_card.id)
     expect(page).to have_text(I18n.t('common_errors.access_forbidden'))
   end
 
@@ -23,7 +23,7 @@ RSpec.feature 'Cards manipulation' do
       create(:another_expired_card, user: user, deck: deck)
     end
 
-    before { visit cards_path }
+    before { visit dashboard_cards_path }
 
     scenario 'User sees only one card' do
       expect(page).to have_css('.card-block', count: 1)
@@ -41,7 +41,7 @@ RSpec.feature 'Cards manipulation' do
 
     context 'successfully' do
       before do
-        visit new_card_path
+        visit new_dashboard_card_path
 
         fill_in 'card_original_text', with: new_card_attrs[:original_text]
         fill_in 'card_translated_text', with: new_card_attrs[:translated_text]
@@ -101,7 +101,7 @@ RSpec.feature 'Cards manipulation' do
       let!(:curr_user_card) { create(:card_with_image, user: user, deck: deck) }
 
       before do
-        visit edit_card_path(curr_user_card.id)
+        visit edit_dashboard_card_path(curr_user_card.id)
       end
 
       scenario 'sees an image' do
@@ -119,7 +119,7 @@ RSpec.feature 'Cards manipulation' do
 
     context 'unsuccessfully' do
       before do
-        visit new_card_path
+        visit new_dashboard_card_path
 
         find('input[type=submit]').click
       end

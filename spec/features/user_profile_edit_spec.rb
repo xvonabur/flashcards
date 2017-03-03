@@ -8,7 +8,7 @@ RSpec.feature 'User profile edit' do
 
   before do
     login user
-    visit translation_check_path
+    visit dashboard_translation_check_path
     find('#user_profile_link').click
   end
 
@@ -20,7 +20,7 @@ RSpec.feature 'User profile edit' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('users.update.success')
+      expect(page).to have_content I18n.t('dashboard.users.update.success')
     end
 
     scenario 'only email' do
@@ -28,7 +28,7 @@ RSpec.feature 'User profile edit' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('users.update.success')
+      expect(page).to have_content I18n.t('dashboard.users.update.success')
     end
 
     scenario 'only password' do
@@ -37,7 +37,7 @@ RSpec.feature 'User profile edit' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('users.update.success')
+      expect(page).to have_content I18n.t('dashboard.users.update.success')
     end
 
     scenario 'only active deck' do
@@ -45,7 +45,7 @@ RSpec.feature 'User profile edit' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('users.update.success')
+      expect(page).to have_content I18n.t('dashboard.users.update.success')
     end
 
     scenario 'only locale' do
@@ -53,7 +53,7 @@ RSpec.feature 'User profile edit' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('users.update.success')
+      expect(page).to have_content I18n.t('dashboard.users.update.success')
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.feature 'User profile edit' do
 
       find('input[type=submit]').click
 
-      expect(page).to_not have_content I18n.t('users.update.success')
+      expect(page).to_not have_content I18n.t('dashboard.users.update.success')
     end
   end
 end

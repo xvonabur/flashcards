@@ -12,24 +12,24 @@
     <ul class="navbar-nav mr-auto">
       <% if current_user %>
         <li class="nav-item">
-          <%= link_to t('navigation.links.all_decks'), decks_path,
+          <%= link_to t('navigation.links.all_decks'), dashboard_decks_path,
                       id: 'all_decks_link',
-                      class: navbar_item_class('nav-link', decks_path) %>
+                      class: navbar_item_class('nav-link', dashboard_decks_path) %>
         </li>
         <li class="nav-item">
-          <%= link_to t('navigation.links.new_deck'), new_deck_path,
+          <%= link_to t('navigation.links.new_deck'), new_dashboard_deck_path,
                       id: 'add_deck_link',
-                      class: navbar_item_class('nav-link', new_deck_path) %>
+                      class: navbar_item_class('nav-link', new_dashboard_deck_path) %>
         </li>
         <li class="nav-item">
-          <%= link_to t('navigation.links.all_cards'), cards_path,
+          <%= link_to t('navigation.links.all_cards'), dashboard_cards_path,
                       id: 'all_cards_link',
-                      class: navbar_item_class('nav-link', cards_path) %>
+                      class: navbar_item_class('nav-link', dashboard_cards_path) %>
         </li>
         <li class="nav-item">
-          <%= link_to t('navigation.links.new_card'), new_card_path,
+          <%= link_to t('navigation.links.new_card'), new_dashboard_card_path,
                       id: 'add_card_link',
-                      class: navbar_item_class('nav-link', new_card_path) %>
+                      class: navbar_item_class('nav-link', new_dashboard_card_path) %>
         </li>
       <% else %>
         <% I18n.available_locales.each do |locale| %>
@@ -42,17 +42,20 @@
     </ul>
     <ul class="nav navbar-nav nav-masthead">
       <% if current_user %>
-        <%= link_to t('navigation.links.profile'), edit_user_path(current_user.id),
+        <%= link_to t('navigation.links.profile'),
+                    edit_dashboard_user_path(current_user.id),
                     id: 'user_profile_link',
-                    class: navbar_item_class('nav-link',
-                                             edit_user_path(current_user.id)) %>
+                    class: navbar_item_class(
+                      'nav-link', edit_dashboard_user_path(current_user.id)
+                    ) %>
         <%= link_to t('navigation.links.log_out'), :logout, method: :post,
                     id: 'log_out_link', class: 'nav-link' %>
       <% else %>
         <li class="nav-item">
-          <%= link_to t('navigation.links.sign_up'), new_user_path,
+          <%= link_to t('navigation.links.sign_up'), new_home_user_path,
                       id: 'sign_up_link',
-                      class: navbar_item_class('nav-link', new_user_path) %>
+                      class: navbar_item_class('nav-link',
+                                               new_home_user_path) %>
         </li>
         <li class="nav-item">
           <%= link_to t('navigation.links.sign_in'), :login, id: 'sign_in_link',

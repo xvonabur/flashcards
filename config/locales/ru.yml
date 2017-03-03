@@ -46,33 +46,37 @@ ru:
           confirm: 'Вы уверены, что хотите удалить колоду?'
         edit:
           btn: 'Редактировать'
-  users:
-    new:
-      header: 'Регистрация нового пользователя'
-    create:
-      success: 'Регистрация прошла успешно'
-    edit:
-      header: 'Редактирование пользователя'
-    update:
-      success: 'Профиль пользователя был обновлен'
-  user_sessions:
-    new:
-      header: 'Войти'
-      facebook: 'Войти через Facebook'
-    create:
-      success: 'Привет!'
-      failure: 'Не удалось войти! Проверьте имя пользователя и пароль.'
-    destroy:
-      success: 'Счастливо!'
-  translation_check:
-    form:
-      labels:
-        text_to_check: 'Введите перевод ниже:'
-        check_btn: 'Проверить'
-    results:
-      good: 'Правильно!'
-      bad: 'Не правильно!'
-      typo: "Почти! Cлово '%{translated}' переводится как '%{original}'. Вы ввели '%{passed}'"
+  home:
+    users:
+      new:
+        header: 'Регистрация нового пользователя'
+      create:
+        success: 'Регистрация прошла успешно'
+    user_sessions:
+      new:
+        header: 'Войти'
+        facebook: 'Войти через Facebook'
+      create:
+        success: 'Привет!'
+        failure: 'Не удалось войти! Проверьте имя пользователя и пароль.'
+  dashboard:
+    translation_check:
+      form:
+        labels:
+          text_to_check: 'Введите перевод ниже:'
+          check_btn: 'Проверить'
+      results:
+        good: 'Правильно!'
+        bad: 'Не правильно!'
+        typo: "Почти! Cлово '%{translated}' переводится как '%{original}'. Вы ввели '%{passed}'"
+    user_sessions:
+      destroy:
+        success: 'Счастливо!'
+    users:
+      edit:
+        header: 'Редактирование пользователя'
+      update:
+        success: 'Профиль пользователя был обновлен'
   oauths:
     callback:
      success: 'Вы зашли через'

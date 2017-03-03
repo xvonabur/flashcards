@@ -15,16 +15,16 @@ RSpec.feature 'Translation check' do
     end
 
     before(:each) do
-      visit translation_check_path
+      visit dashboard_translation_check_path
     end
 
     scenario 'User enters right translation' do
       original = expired_card.original_text
 
       fill_in 'card_text_to_check', with: original
-      click_button I18n.t('translation_check.form.labels.check_btn')
+      click_button I18n.t('dashboard.translation_check.form.labels.check_btn')
 
-      expect(page).to have_text(I18n.t('translation_check.results.good'))
+      expect(page).to have_text(I18n.t('dashboard.translation_check.results.good'))
     end
 
     scenario 'User enters almost right translation' do
@@ -32,9 +32,9 @@ RSpec.feature 'Translation check' do
       text_to_enter = "#{original}_1"
 
       fill_in 'card_text_to_check', with: text_to_enter
-      click_button I18n.t('translation_check.form.labels.check_btn')
+      click_button I18n.t('dashboard.translation_check.form.labels.check_btn')
 
-      expected_message = I18n.t('translation_check.results.typo',
+      expected_message = I18n.t('dashboard.translation_check.results.typo',
                                 translated: expired_card.translated_text,
                                 original: original,
                                 passed: text_to_enter)
@@ -43,9 +43,9 @@ RSpec.feature 'Translation check' do
 
     scenario 'User enters wrong translation' do
       fill_in 'card_text_to_check', with: '123'
-      click_button I18n.t('translation_check.form.labels.check_btn')
+      click_button I18n.t('dashboard.translation_check.form.labels.check_btn')
 
-      expect(page).to have_text(I18n.t('translation_check.results.bad'))
+      expect(page).to have_text(I18n.t('dashboard.translation_check.results.bad'))
     end
 
     scenario 'User sees a card image' do
@@ -59,7 +59,7 @@ RSpec.feature 'Translation check' do
     end
 
     before(:each) do
-      visit translation_check_path
+      visit dashboard_translation_check_path
     end
 
     scenario 'User sees a default card image' do
@@ -74,7 +74,7 @@ RSpec.feature 'Translation check' do
     let!(:deck_card) { create(:expired_card, user: user, deck: deck) }
 
     scenario 'User sees an active deck card' do
-      visit translation_check_path
+      visit dashboard_translation_check_path
 
       expect(page).to have_content(active_deck_card.translated_text)
     end
@@ -85,7 +85,7 @@ RSpec.feature 'Translation check' do
     let!(:deck_card) { create(:expired_card, user: user, deck: deck) }
 
     scenario 'User sees an active deck card' do
-      visit translation_check_path
+      visit dashboard_translation_check_path
 
       expect(page).to have_content(deck_card.translated_text)
     end

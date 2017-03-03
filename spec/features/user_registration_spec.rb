@@ -17,7 +17,7 @@ RSpec.feature 'User registration' do
 
       find('input[type=submit]').click
 
-      expect(page).to have_content I18n.t('users.create.success')
+      expect(page).to have_content I18n.t('home.users.create.success')
       expect(page).to_not have_css('form.user_session')
     end
   end
