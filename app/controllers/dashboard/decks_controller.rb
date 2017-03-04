@@ -16,7 +16,7 @@ module Dashboard
       @deck = current_user.decks.build(deck_params)
 
       if @deck.save
-        redirect_to @deck
+        redirect_to dashboard_deck_path(@deck)
       else
         render 'new'
       end

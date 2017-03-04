@@ -19,33 +19,6 @@ ru:
     lead: 'Первый в мире удобный менеджер флеш-карточек. Именно так.'
   common_errors:
     access_forbidden: 'Доступ запрещен'
-  cards:
-    index:
-      title: 'Все карточки'
-    template:
-      header:
-        title: 'Карта #'
-      delete:
-        btn: 'Удалить'
-        confirm: 'Вы уверены, что хотите удалить карточку?'
-      edit:
-        btn: 'Редактировать'
-    errors:
-      texts_are_equal: 'Оригинальный и переведенный тексты должны отличаться!'
-  decks:
-    index:
-      title: 'Все колоды'
-    errors:
-      no_decks: 'У вас нет ни одной колоды!'
-    deck:
-      template:
-        header:
-          title: 'Колода #'
-        delete:
-          btn: 'Удалить'
-          confirm: 'Вы уверены, что хотите удалить колоду?'
-        edit:
-          btn: 'Редактировать'
   home:
     users:
       new:
@@ -60,6 +33,34 @@ ru:
         success: 'Привет!'
         failure: 'Не удалось войти! Проверьте имя пользователя и пароль.'
   dashboard:
+    cards:
+      index:
+        title: 'Все карточки'
+      card:
+        template:
+          header:
+            title: 'Карта #'
+          delete:
+            btn: 'Удалить'
+            confirm: 'Вы уверены, что хотите удалить карточку?'
+          edit:
+            btn: 'Редактировать'
+      errors:
+        texts_are_equal: 'Оригинальный и переведенный тексты должны отличаться!'
+    decks:
+      index:
+        title: 'Все колоды'
+      errors:
+        no_decks: 'У вас нет ни одной колоды!'
+      deck:
+        template:
+          header:
+            title: 'Колода #'
+          delete:
+            btn: 'Удалить'
+            confirm: 'Вы уверены, что хотите удалить колоду?'
+          edit:
+            btn: 'Редактировать'
     translation_check:
       form:
         labels:

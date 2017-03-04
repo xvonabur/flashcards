@@ -34,7 +34,7 @@ class Card < ApplicationRecord
   def texts_are_different?
     return if cleaned_text(self.original_text) != cleaned_text(self.translated_text)
     [:original_text, :translated_text].each do |attr|
-      errors.add(attr, I18n.t('cards.errors.texts_are_equal'))
+      errors.add(attr, I18n.t('dashboard.cards.errors.texts_are_equal'))
     end
   end
 

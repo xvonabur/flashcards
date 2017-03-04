@@ -1,12 +1,15 @@
 en:
   simple_form:
     labels:
-      defaults:
+      card:
         original_text: "Original text"
         translated_text: "Translated text"
         review_date: "Review date"
         remote_image_url: "Fill in image URL"
         image: "OR just upload it"
+        deck_id: "Deck"
+      deck:
+        name: "Deck name"
     "yes": 'Yes'
     "no": 'No'
     required:

@@ -1,4 +1,4 @@
-<%= simple_form_for(deck, as: :deck) do |form| %>
+<%= simple_form_for([:dashboard, deck], as: :deck) do |form| %>
   <%= form.error_notification %>
   <%= form.input :name %>
   <%= form.button :submit %>

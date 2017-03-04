@@ -6,12 +6,13 @@
     </div>
     <div class="card-block">
       <h4 class="card-title">
-        <%= link_to deck.name, deck_path(deck) %>
+        <%= link_to deck.name, dashboard_deck_path(deck) %>
       </h4>
-      <%= link_to t('.template.edit.btn'), edit_deck_path(deck),
+      <%= link_to t('.template.edit.btn'), edit_dashboard_deck_path(deck),
                   class: 'btn btn-primary' %>
       <% if show_del_link %>
-        <%= link_to t('.template.delete.btn'), deck_path(deck), method: :delete,
+        <%= link_to t('.template.delete.btn'), dashboard_deck_path(deck),
+                    method: :delete,
           data: { confirm: t('.template.delete.confirm') },
           class: 'btn btn-danger' %>
       <% end %>

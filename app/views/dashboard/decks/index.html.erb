@@ -3,7 +3,7 @@
 <div class="row">
 <% @decks.each do |deck| %>
   <div class="col-md-6">
-    <%= render partial: 'decks/deck', locals: { deck: deck, show_del_link: true } %>
+    <%= render partial: 'dashboard/decks/deck', locals: { deck: deck, show_del_link: true } %>
   </div>
 <% end %>
 </div>

@@ -1,12 +1,15 @@
 ru:
   simple_form:
     labels:
-      defaults:
+      card:
         original_text: "Оригинал"
         translated_text: "Перевод"
         review_date: "Дата пересмотра"
         remote_image_url: "Вставьте ссылку на картинку"
         image: "ИЛИ просто загрузите ее"
+        deck_id: "Колода"
+      deck:
+        name: "Название колоды"
     "yes": 'Да'
     "no": 'Нет'
     required:

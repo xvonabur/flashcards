@@ -19,33 +19,6 @@ en:
     lead: 'The first intuitive flash cards manager in the world. That is right.'
   common_errors:
     access_forbidden: 'Access forbidden!'
-  cards:
-    index:
-      title: 'All cards'
-    template:
-      header:
-        title: 'Card #'
-      delete:
-        btn: 'Delete'
-        confirm: 'Are you sure?'
-      edit:
-        btn: 'Edit'
-    errors:
-      texts_are_equal: 'Original and translated texts must not be equal!'
-  decks:
-    index:
-      title: 'All decks'
-    errors:
-      no_decks: 'You have no decks!'
-    deck:
-      template:
-        header:
-          title: 'Deck #'
-        delete:
-          btn: 'Delete'
-          confirm: 'Are yo sure?'
-        edit:
-          btn: 'Edit'
   home:
     users:
       new:
@@ -60,6 +33,34 @@ en:
         success: 'Hello!'
         failure: "Cannot sign in! Check user name and user password."
   dashboard:
+    cards:
+      index:
+        title: 'All cards'
+      card:
+        template:
+          header:
+            title: 'Card #'
+          delete:
+            btn: 'Delete'
+            confirm: 'Are you sure?'
+          edit:
+            btn: 'Edit'
+      errors:
+        texts_are_equal: 'Original and translated texts must not be equal!'
+    decks:
+      index:
+        title: 'All decks'
+      errors:
+        no_decks: 'You have no decks!'
+      deck:
+        template:
+          header:
+            title: 'Deck #'
+          delete:
+            btn: 'Delete'
+            confirm: 'Are yo sure?'
+          edit:
+            btn: 'Edit'
     translation_check:
       form:
         labels:
