@@ -2,5 +2,6 @@ $("#flash-messages").html(
   "<%= j(render partial: 'layouts/flash_messages') %>"
 );
 $("#card-body").html(
-  "<%= j(render partial: 'translation_check/check_form', locals: { card: @card }) %>"
+  "<%= j(render partial: 'dashboard/translation_check/check_form',
+         locals: { card: @card }) %>"
 );
